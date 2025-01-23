@@ -31,7 +31,7 @@ Think **Rust**, but with **Pust** simplicity and elegance!
 - **Mainspace**: Mainspace is where you can code without using the p. , like this: p.fn("main", ['pln("my coding space")'])
 - **Print**: To print in Pust in use pln("") or p.pln("") if it isnt in mainspace
 - **Input**: If you want user input, use iln("") or add the p. if not in mainspace
-- **Functions**: Currently sometimes functions dose not work in Mainspace, so you have to use with p. : p.fn("MyFunc", ['code'])
+- **Functions**: Currently sometimes functions does not work in Mainspace, so you have to use with p. : p.fn("MyFunc", ['code'])
 - **Variables**: Variables, this is a long one. to create a variable, use cv("VariableName", "Value"), to print or Input a variable, use pln("VariableName") and input, if its outside of Mainspace use variable = p.iln("Type Hello: ") like in basic python.
 
 
