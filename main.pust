@@ -1,1 +1,7 @@
 pln("Hello")
+iln("Hello: ")
+cv("Variable", "Value")
+fn("MyFunc", ["pln('from MyFunc')"])
+fn("main", ["iln("Nice!")"])
+
+# Stuff from Pust
