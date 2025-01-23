@@ -14,7 +14,3 @@ You may not alter the code in a way that introduces security vulnerabilities, co
 
  3. Security Best Practices  
 When modifying or redistributing the code, you must follow security best practices to prevent introducing vulnerabilities or security risks. Always test your modifications for potential security issues before making them public.
-
----
-
-= Ownership: This security policy is owned by the original creator (Sodium Base). This label may be removed.
