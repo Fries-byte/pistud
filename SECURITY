@@ -1,0 +1,20 @@
+  ___                  _ _          ___     _ _         
+ / __| ___ __ _  _ _ _(_) |_ _  _  | _ \___| (_)__ _  _ 
+ \__ \/ -_) _| || | '_| |  _| || | |  _/ _ \ | / _| || |
+ |___/\___\__|\_,_|_| |_|\__|\_, | |_| \___/_|_\__|\_, |
+                             |__/                  |__/ 
+                                                                            
+This code is freely available for use, modification, and distribution for any purpose, with the following security guidelines:
+
+ 1. No Malicious Code or Modifications  
+You are free to use, modify, and distribute this code, provided that you do not introduce any malicious code, such as viruses, malware, or backdoors. The code must remain safe and secure for all users.
+
+ 2. Code Integrity  
+You may not alter the code in a way that introduces security vulnerabilities, compromises functionality, or leads to potential risks for users. Any modifications should maintain the integrity of the original code and its security.
+
+ 3. Security Best Practices  
+When modifying or redistributing the code, you must follow security best practices to prevent introducing vulnerabilities or security risks. Always test your modifications for potential security issues before making them public.
+
+---
+
+= Ownership: This security policy is owned by the original creator (Sodium Base). This label may be removed.
