@@ -9,8 +9,8 @@
 </h4>
 <hr>
 <p align="center">
-  <b>Pust</b> – A Rust-inspired programming language  
-  This program is in pre-release. The full code is still under development.
+  <b>Pust</b> – A Rust-inspired programming language <br> 
+  This program is in alpha. The full code is still under development.
 </p>
 
 
