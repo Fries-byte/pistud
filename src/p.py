@@ -1,4 +1,5 @@
-import webbrowser # importing webbrowser to open sites
+import webbrowser  # Importing webbrowser to open sites
+
 # =--=--=--=--=--=--=--=--=--=--=--=--=
 # Pust's Interpreter source
 # Created by Pust-Lang (GitHub)
@@ -9,27 +10,31 @@ variables = {}  # Dictionary to store variables
 functions = {}  # Dictionary to store functions
 
 def cv(var, val):  # Define variables
-    # Store the variable name and its value in the dictionary
-    variables[var] = val
-# Example usage: cv("variable", "value")
+    variables[var] = val  # Store the variable name and its value in the dictionary
 
-def wo(url): # Define web browser
-    # Opening your web browser with the url
-    webbrowser.open(url)
-    # Example usage: wo("https://example.com")
-    
+def wo(url):  # Define web browser
+    webbrowser.open(url)  # Open your web browser with the URL
+
 def pln(l):  # Define Print
-    # Check if l is a variable name; if so, print its value from the dictionary
-    if l in variables:
-        print(variables[l])
+    if l in variables:  # Check if `l` is a variable name
+        print(variables[l])  # Print its value from the dictionary
     else:
-        print(l)
-# Example usage: pln("Hello World!") or pln("variable")
+        print(l)  # Print the value directly
 
 def iln(prompt):  # Define input
-    # Take input from the user and return it
-    return input(prompt)
-# Example usage: user_input = iln("Enter something: ")
+    return input(prompt)  # Take input from the user and return it
+
+def if_stmt(var, value, code_if, code_else=None):  
+    """
+    Check if the variable equals the value.
+    Execute `code_if` if true, and `code_else` (if provided) if false.
+    """
+    if var in variables and variables[var] == value:
+        for line in code_if:
+            exec(line, globals())
+    elif code_else:
+        for line in code_else:
+            exec(line, globals())
 
 def fn(name=None, code=None):  # Define and run functions
     """
@@ -38,29 +43,42 @@ def fn(name=None, code=None):  # Define and run functions
     Automatically run the 'main' function if defined.
     """
     if name and code:
-        # Define the function
-        functions[name] = code
-
-        # Automatically run the 'main' function after it's defined
-        if name == "main":
+        functions[name] = code  # Define the function
+        if name == "main":  # Automatically run the 'main' function
             for line in code:
-                exec(line)
+                exec(f"p.{line}")
     elif name:
-        # Run the function
-        if name in functions:
+        if name in functions:  # Run a previously defined function
             for line in functions[name]:
-                exec(line)
+                exec(f"p.{line}")
         else:
             print(f"Function '{name}' is not defined.")
 
-# Example usage of the interpreter:
+
+# Alias the functions for mainspace and non-mainspace use
+class PustInterpreter:
+    cv = staticmethod(cv)
+    wo = staticmethod(wo)
+    pln = staticmethod(pln)
+    iln = staticmethod(iln)
+    fn = staticmethod(fn)
+    if_stmt = staticmethod(if_stmt)
+
+
+# Create an instance for non-mainspace use
+p = PustInterpreter()
+
+# Example usage of the interpreter
 if __name__ == "__main__":
-    # Define and run the main function
-    fn("main", [
-        "pln('Welcome to Pust Interpreter!')",
-        "cv('greeting', 'Hello from the main function!')",
-        "pln('greeting')",
-        "fn('say_hi', [\"pln('Hi from inside another function!')\"])",
-        "fn('say_hi')",
-        "wo('https://pust-lang.github.io/web/')" 
+    # Non-mainspace usage
+    p.cv("status", "active")
+    p.if_stmt("status", "active", 
+        ["p.pln('Status is active!')"], 
+        ["p.pln('Status is inactive.')"]
+    )
+
+    # Mainspace usage
+    p.fn("main", [
+        "cv('role', 'guest')",
+        "if_stmt('role', 'admin', [\"pln('Welcome, Admin!')\"], [\"pln('Welcome, Guest.')\"])"
     ])
