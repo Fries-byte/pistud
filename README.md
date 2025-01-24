@@ -27,6 +27,8 @@ Think **Rust**, but with **Pust** simplicity and elegance!
 ## Features (Work in Progress)
 
 - **Easy to use**: Pust is easy to use, like, pln, iln, fn, wo, if_stmt and cv!
+- **Usefull**: Pust is written it so that its easy to code for bigginers, it might also be usefull
+- **Software**: Currently this is not fully added yet, but in the furture this language
 
 ---
 ## How to program
@@ -49,7 +51,7 @@ However, if you're curious and would like to experiment: <br>
    git clone https://github.com/Pust-Lang/Pust
    ```
 2. Run the files <br>
-   Run and open the file named 'main.py', you'll be seeing "p.fn("main", [""]). In between the [""] is where you code <br>
+   Run and open the file named 'main.py', you'll be seeing "p.fn("main", [""]). In between the [""] is where you code, you may also not use Mainspace, but you need to add p. , like this: p.pln("Hello World!") <br>
    To learn Pust, go in our website and click on "cource" (still in development!) <br>
 
 Have fun!
