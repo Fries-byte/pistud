@@ -2,10 +2,11 @@
   
   ![Banner](https://github.com/user-attachments/assets/2912f1f3-4c54-4d49-86a3-acf5b147a244)
 </p>
-<p align="center">
+<h4 align="center">
   
   [Website](https://pust-lang.github.io/web/)
-</p>
+  
+</h4>
 <hr>
 <p align="center">
   <b>Pust</b> – A Rust-inspired programming language  
