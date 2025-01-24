@@ -1,3 +1,6 @@
+# NOTE:
+# THIS IS A OLD TEST FILE, THIS WILL PROBABLY NOT WORK
+###
 import sys
 import os
 src_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../src"))
