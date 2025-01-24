@@ -1,6 +1,7 @@
 <p align="center">
   
-  ![Banner](https://github.com/user-attachments/assets/2912f1f3-4c54-4d49-86a3-acf5b147a244)
+  ![Banner](https://github.com/user-attachments/assets/ee3fb946-3a01-4e4c-a944-159d73d2d710)
+
 </p>
 <h4 align="center">
   
