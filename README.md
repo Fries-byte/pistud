@@ -37,7 +37,7 @@ Think **Rust**, but with **Pust** simplicity and elegance!
 - **Input**: If you want user input, use iln("") or add the p. if not in mainspace, and this is how to give an input a variable to add in an if statement or print: cv("variable", "put anything you want, it wont be used") = iln("Hello: "), and it'll take the user input and save it into the variable <br> <br>
 - **if_stmt**: to use an if statement, use ```p.if_stmt("variable", "value", ['pln("Hello!")'], ['pln("Bye!")'])```, this part "variable", "value", you could say if variable is value then pln("Hello!") else pln("Bye!"), else is optinal. ```p.if_stmt(if > "variable", is > "value", then > ['pln("Hello!")'], else > ['pln("Bye!")'])``` <br> <br>
 - **Functions**: Currently sometimes functions does not work in Mainspace, so you have to use with p. : p.fn("MyFunc", ['code']) <br> <br>
-- **Variables**: Variables, this is a long one. to create a variable, use cv("VariableName", "Value"), to print or Input a variable, use pln("VariableName") and input, if its outside of Mainspace use variable = p.iln("Type Hello: ") like in basic python. <br> <br>
+- **Variables**: Variables, to create a variable, use cv("VariableName", "Value"), to print or Input a variable, use pln("VariableName") and input, if its outside of Mainspace use variable = p.iln("Type Hello: ") like in basic python. <br> <br>
 - **Copy Paste**: mainspace ``` p.fn("main", [' code here ']) ```, print ``` p.pln('Hello World!') ```, input ``` p.iln('Type somthing: ') ```, variables ``` p.cv('VName', 'Vvalue') ```, if statement ```p.if_stmt("variable", "value", ['pln("Hello!")'], ['pln("Bye!")'])```, web open ```p.wo('url')``` <br> <br>
 
 
