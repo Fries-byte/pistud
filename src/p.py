@@ -16,6 +16,7 @@ def cv(var, val):  # Define variables
 def wo(url): # Define web browser
     # Opening your web browser with the url
     webbrowser.open(url)
+    # Example usage: wo("https://example.com")
     
 def pln(l):  # Define Print
     # Check if l is a variable name; if so, print its value from the dictionary
