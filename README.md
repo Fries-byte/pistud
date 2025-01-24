@@ -35,6 +35,7 @@ Think **Rust**, but with **Pust** simplicity and elegance!
 - **Input**: If you want user input, use iln("") or add the p. if not in mainspace
 - **Functions**: Currently sometimes functions does not work in Mainspace, so you have to use with p. : p.fn("MyFunc", ['code'])
 - **Variables**: Variables, this is a long one. to create a variable, use cv("VariableName", "Value"), to print or Input a variable, use pln("VariableName") and input, if its outside of Mainspace use variable = p.iln("Type Hello: ") like in basic python.
+- **Copy Paste**: mainspace ``` p.fn("main", [' code here ']) ```, print ``` p.pln('Hello World!') ```, input ``` p.iln('Type somthing: ') ```, variables ``` p.cv('VName', 'Vvalue') ```
 
 
 ## Getting Started
