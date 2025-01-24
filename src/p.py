@@ -1,7 +1,9 @@
+import webbrowser # importing webbrowser to open sites
+# =--=--=--=--=--=--=--=--=--=--=--=--=
 # Pust's Interpreter source
 # Created by Pust-Lang (GitHub)
 # Learn more on our website or README.md
-# =--=--=--=--=--=--=
+# =--=--=--=--=--=--=--=--=--=--=--=--=
 
 variables = {}  # Dictionary to store variables
 functions = {}  # Dictionary to store functions
@@ -11,6 +13,10 @@ def cv(var, val):  # Define variables
     variables[var] = val
 # Example usage: cv("variable", "value")
 
+def wo(url): # Define web browser
+    # Opening your web browser with the url
+    webbrowser.open(url)
+    
 def pln(l):  # Define Print
     # Check if l is a variable name; if so, print its value from the dictionary
     if l in variables:
@@ -53,6 +59,7 @@ if __name__ == "__main__":
         "pln('Welcome to Pust Interpreter!')",
         "cv('greeting', 'Hello from the main function!')",
         "pln('greeting')",
-        "fn('say_hi', [\"pln('Hi from inside another function!')\"])",  # Add a nested function
-        "fn('say_hi')"  # Run the nested function
+        "fn('say_hi', [\"pln('Hi from inside another function!')\"])",
+        "fn('say_hi')",
+        "wo('https://pust-lang.github.io/web/')" 
     ])
