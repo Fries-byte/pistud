@@ -3,6 +3,7 @@ import webbrowser  # Importing webbrowser to open sites
 # =--=--=--=--=--=--=--=--=--=--=--=--=
 # Pust's Interpreter source
 # Created by Pust-Lang (GitHub)
+# and written by Fries-byte (GitHub)
 # Learn more on our website or README.md
 # =--=--=--=--=--=--=--=--=--=--=--=--=
 
