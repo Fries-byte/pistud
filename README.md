@@ -60,7 +60,7 @@ However, if you're curious and would like to experiment: <br>
    <br> <br>
    
    ```bash
-   git clone https://github.com/Pust-Lang/Pust
+   git clone https://github.com/Pust-Lang/pustIDE.git
    ```
    
    <br><br>
