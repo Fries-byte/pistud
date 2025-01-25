@@ -60,14 +60,22 @@ def iln(prompt):
     return value
 
 # Function to handle if statements
-def if_stmt(var, value, code_if, code_else=None):  
-    global variables  
-    if var in variables and variables[var] == value:
-        for line in code_if:
-            exec(line, globals())
-    elif code_else:
-        for line in code_else:
-            exec(line, globals())
+def if_stmt(var, condition, value, code_if, code_else=None):
+    global variables
+    
+    # Ensure that the variable exists
+    if var in variables:
+        if condition == "includes":  # Check if value is included in the variable's value
+            if value in variables[var]:
+                for line in code_if:
+                    exec(line, globals())  # Execute if the condition is met
+        elif condition == "=>":  # Check if variable is exactly equal to value
+            if variables[var] == value:
+                for line in code_if:
+                    exec(line, globals())  # Execute if the condition is met
+        elif code_else:  # If condition is not met and there is an else block
+            for line in code_else:
+                exec(line, globals())  # Execute else block
 
 # Function to execute the main code
 def execute_main(code):  
