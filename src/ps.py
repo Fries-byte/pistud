@@ -24,7 +24,6 @@ def cw(wtitle, geo):  # Define create window
     return window  # Return the created window instance
 
 def ct(ttitle, geo):  # Define create window
-    window = Tk()  # Create a Tkinter window object
     window.title(ttitle)  # Set the window's title using ttitle
     window.geometry(geo)  # Set the window's geometry
     windows[ttitle] = window  # Store the window in the dictionary using ttitle as the key
