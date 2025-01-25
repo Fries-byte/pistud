@@ -1,19 +1,9 @@
 import webbrowser  # Importing webbrowser to open sites
 from tkinter import messagebox  # Importing messagebox to give info, warning, error
-from tkinter import *  # Importing tkinter for software builder
-
-# =--=--=--=--=--=--=--=--=--=--=--=--=
-# Pust's Interpreter source
-# Created by Pust-Lang (GitHub)
-# and written by Fries-byte (GitHub)
-# Learn more on our website or README.md
-#
-# 2025 - presents | The Programming Language Pust
-# =--=--=--=--=--=--=--=--=--=--=--=--=
+from tkinter import *
 
 variables = {}  # Dictionary to store variables
 functions = {}  # Dictionary to store functions
-windows = {}  # Dictionary to store created windows
 
 def cw(wtitle, geo):  # Define create window
     window = Tk()
@@ -21,25 +11,23 @@ def cw(wtitle, geo):  # Define create window
     window.geometry(geo)  # Set the window's geometry
     return window  # Return the created window instance
 
-def wl(wname):  # Define window loop
-    if wname in windows:  # Check if the window exists
-        windows[wname].mainloop()  # Open the window
-    else:
-        print(f"Error: Window '{wname}' not found.")  # Handle missing window
+def ct(window, text_content):  # Define create text for the window
+    label = Label(window, text=text_content, font=("Arial", 12))
+    label.pack(pady=10)
+    return label
+
+def wl(window):  # Define window loop
+    window.mainloop()
 
 def cv(var, val):  # Define create variable
-    global variables  # Ensure `variables` is globally accessible
-    if isinstance(val, Tk):  # If the value is a Tk window, store it in the windows dictionary
-        windows[var] = val
-    else:
-        variables[var] = val  # Otherwise, store it as a normal variable
+    global variables
+    variables[var] = val
 
 def wo(url):  # Define web open
-    print(f"Opening URL: {url}")
     webbrowser.open(url)
 
 def mb(type, title, message):  # Define message box
-    method_name = "show" + type  # Construct method name dynamically
+    method_name = "show" + type
     method = getattr(messagebox, method_name, None)
     if method:
         method(title, message)
@@ -48,57 +36,60 @@ def mb(type, title, message):  # Define message box
 
 def pln(l):  # Define print line
     if l in variables:
-        print(variables[l])  # Print its value from the dictionary
+        print(variables[l])
     else:
-        print(l)  # Print the value directly
+        print(l)
 
 def iln(prompt):  # Define input line
-    value = input(prompt)  # Take input from the user
-    return value
+    return input(prompt)
 
-# Adding the functionality for includes => and => logic.
-def if_stmt(var, *args):
-    global variables
-    if isinstance(args[0], str) and args[1] == "=>":  # Check for "includes =>" syntax
-        value = args[2]
-        if value in variables.get(var, ""):  # Check if the string is inside the variable's value
-            for line in args[3]:
-                exec(line, globals())
-        else:
-            if len(args) > 4:
-                for line in args[4]:
-                    exec(line, globals())
-    elif args[0] == "=>":  # The original equality check
-        value = args[1]
-        if variables.get(var) == value:
-            for line in args[2]:
-                exec(line, globals())
-        else:
-            if len(args) > 3:
-                for line in args[3]:
-                    exec(line, globals())
+def preprocess_code(code):
+    """
+    Transform custom `if_stmt` syntax with `{}` into valid Python syntax using indentation.
+    """
+    lines = code.splitlines()
+    processed_lines = []
+    indent_stack = []
 
-def execute_main(code):  # Define comments
+    for line in lines:
+        stripped = line.strip()
+
+        # Handle opening brace
+        if stripped.endswith("{"):
+            indent_stack.append("    ")  # Add a new level of indentation
+            processed_lines.append(line.replace("{", ":").rstrip())
+            continue
+
+        # Handle closing brace
+        if stripped == "}":
+            if indent_stack:
+                indent_stack.pop()  # Remove one level of indentation
+            continue
+
+        # Add current indentation
+        current_indent = "".join(indent_stack)
+        processed_lines.append(current_indent + stripped)
+
+    return "\n".join(processed_lines)
+
+def execute_main(code):
+    code = preprocess_code(code)  # Preprocess code to handle `{}` syntax
     for line in code.splitlines():
         stripped_line = line.strip()
         if "//" in stripped_line:
             stripped_line = stripped_line.split("//", 1)[0].strip()  # Remove inline comments
         if stripped_line == "":
-            continue  # Ignore blank lines
+            continue
         try:
-            if stripped_line.split('(')[0] in dir(PustInterpreter):  # Check if it matches Pust methods
-                exec(f"ps.{stripped_line}", globals())
-            else:
-                exec(stripped_line, globals())
+            exec(stripped_line, globals())
         except Exception as e:
-            print(f"Error in mainspace: {e}")  # Handle runtime errors gracefully
+            print(f"Error in mainspace: {e}")
 
-def fn(name=None, code=None):  # Define function
+def fn(name=None, code=None):
     if name and code:
-        # Process multiline strings properly
         lines = [line.strip() for line in code.strip().splitlines() if line.strip()]
-        functions[name] = lines  # Define the function
-        if name == "main":  # Define mainspace
+        functions[name] = lines
+        if name == "main":
             execute_main(code)
     elif name:
         if name in functions:
@@ -114,9 +105,27 @@ class PustInterpreter:
     pln = staticmethod(pln)
     iln = staticmethod(iln)
     fn = staticmethod(fn)
-    if_stmt = staticmethod(if_stmt)
     mb = staticmethod(mb)
-    wl = staticmethod(wl)  # Add window loop to interpreter
+    ct = staticmethod(ct)
+    wl = staticmethod(wl)
 
 # Create an instance for non-mainspace use
-ps = PustInterpreter()
+p = PustInterpreter()
+
+# Test code
+if __name__ == "__main__":
+    # Define a function outside of mainspace
+    p.fn("sigma", """
+    wo("https://google.com")
+    """)
+
+    # Define and run mainspace code
+    p.fn("main", """
+    cv("var", iln("Please type something: "))
+    if_stmt("var", includes => "hello") {
+        pln("You included hello!")
+        wo("https://example.com")
+    } else {
+        pln("No hello detected.")
+    }
+    """)
