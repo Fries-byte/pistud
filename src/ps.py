@@ -19,7 +19,7 @@ def cw(wtitle, geo):  # Define create window
     window = Tk()
     window.title(wtitle)  # Set the window's title
     window.geometry(geo)  # Set the window's geometry
-    window = windows
+    windows[wtitle] = window  # Store window in the windows dictionary with the key wtitle
     return window  # Return the created window instance
 
 def ct(ttitle, geo):  # Define create window
