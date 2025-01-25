@@ -125,7 +125,9 @@ if version == 5:
       cv("mywindow", cw("My Auto Window", "400x300")) // Create a window and store it as a variable
       wl("mywindow") // Open the window
       """)
-  
+else:
+  break
+
   if version == 4:
     import webbrowser  # Importing webbrowser to open sites
   from tkinter import messagebox  # Importing messagebox to give info, warning, error
@@ -227,7 +229,9 @@ if version == 5:
   // Check the variable using if-else
   if_stmt("var", "a", ['mb("error", "epic", "wrong input!")'], ['fn("Best")'])
   """)
-  
+
+else:
+  break
   
 if version == 3:
   import webbrowser  # Importing webbrowser to open sites
@@ -326,7 +330,8 @@ if __name__ == "__main__":
         "cv('guess', iln('Guess the word: '))",
         "if_stmt('guess', 'Pust', [\"pln('You guessed correctly!')\"], [\"pln('Try again!')\"])"
     ])
-
+else:
+  break
 if version == 2:
   import webbrowser  # Importing webbrowser to open sites
   
@@ -412,7 +417,9 @@ if version == 2:
           "cv('guess', iln('Guess the word: '))",
           "if_stmt('guess', 'Pust', [\"pln('You guessed correctly!')\"], [\"pln('Try again!')\"])"
       ])
-
+else:
+  break
+  
 if version == 1:
   # Pust's Interpreter source
   # Created by Pust-Lang (GitHub)
@@ -472,3 +479,5 @@ if version == 1:
           "fn('say_hi', [\"pln('Hi from inside another function!')\"])",  # Add a nested function
           "fn('say_hi')"  # Run the nested function
       ])
+else:
+  break
