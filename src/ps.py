@@ -65,7 +65,7 @@ def if_stmt(var, condition, value, code_if, code_else=None):
     
     # Ensure that the variable exists
     if var in variables:
-        if condition == "includes":  # Check if value is included in the variable's value
+        if condition == "includes =>":  # Check if value is included in the variable's value
             if value in variables[var]:
                 for line in code_if:
                     exec(line, globals())  # Execute if the condition is met
