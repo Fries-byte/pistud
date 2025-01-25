@@ -66,7 +66,7 @@ class PustInterpreter:
     if_stmt = staticmethod(if_stmt)
 
 # Create an instance for non-mainspace use
-p = PustInterpreter()
+ps = PustInterpreter()
 
 # Example usage of the interpreter
 if __name__ == "__main__":
@@ -78,7 +78,7 @@ if __name__ == "__main__":
     )
 
     # Inside mainspace usage
-    p.fn("main", [
+    ps.fn("main", [
         "cv('guess', iln('Guess the word: '))",
         "if_stmt('guess', 'Pust', [\"pln('You guessed correctly!')\"], [\"pln('Try again!')\"])"
     ])
