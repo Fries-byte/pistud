@@ -29,7 +29,10 @@ def wl(wname):  # Define window loop
 
 def cv(var, val):  # Define create variable
     global variables  # Ensure `variables` is globally accessible
-    variables[var] = val  # Store the value in the `variables` dictionary
+    if isinstance(val, Tk):  # If the value is a Tk window, store it in the windows dictionary
+        windows[var] = val
+    else:
+        variables[var] = val  # Otherwise, store it as a normal variable
 
 def wo(url):  # Define web open
     webbrowser.open(url)
@@ -48,18 +51,25 @@ def pln(l):  # Define print line
     else:
         print(l)  # Print the value directly
 
-def iln(prompt):  # Define input line (to take user input)
+def iln(prompt):  # Define input line
     value = input(prompt)  # Take input from the user
     return value
 
-def if_stmt(var, value, code_if, code_else=None):  # Define if statement
+def if_stmt(*args):  # Define if statement with flexible input
     global variables  # Ensure `variables` is globally accessible
-    if var in variables and variables[var] == value:
-        for line in code_if:
-            exec(line, globals())
-    elif code_else:
-        for line in code_else:
-            exec(line, globals())
+    
+    # Check if 'includes' is used
+    if "includes =>" in args[0]:
+        var_name, _ = args[0].split(" includes =>")
+        value = args[1]
+        if var_name in variables and value in variables[var_name]:  # Check if variable contains the value
+            for line in args[2]:
+                exec(line, globals())
+    elif "=> " in args[0]:
+        var_name, value = args[0].split(" =>")
+        if var_name in variables and variables[var_name] == value:  # Check if variable equals the value
+            for line in args[1]:
+                exec(line, globals())
 
 def execute_main(code):  # Define comments
     for line in code.splitlines():
@@ -103,4 +113,3 @@ class PustInterpreter:
 
 # Create an instance for non-mainspace use
 ps = PustInterpreter()
-
