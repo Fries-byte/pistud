@@ -80,11 +80,15 @@ def iln(prompt):  # Define input line
 
 def if_stmt(var, value, code_if, code_else=None):  # Define if statement
     global variables  # Ensure variables is globally accessible
+
+    # Ensure the variable exists and has the correct value before executing code
     if var in variables and variables[var] == value:
         for line in code_if:
+            # Execute the line, assuming p is a predefined object with methods
             exec(f"p.{line.strip()}", globals())
     elif code_else:
         for line in code_else:
+            # Execute the else block
             exec(f"p.{line.strip()}", globals())
 
 def execute_main(code):  # Define comments
