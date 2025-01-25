@@ -26,10 +26,11 @@ def cw(wtitle, geo):  # Define create window
 def ct(windowname, geo, text):  # Define create title with geo and text
     if windowname in windows:  # Check if the window exists in the dictionary
         window = windows[windowname]  # Get the window from the dictionary
-        window.geometry(geo)  # Set the window's geometry
+        window.geometry(geo)  # Update the window's geometry
         window.title(windowname)  # Set the window's title
         label = Label(window, text=text)  # Create a label with the provided text
         label.pack()  # Pack the label into the window
+        window.update()  # Force the window to update and reflect changes immediately
         print(f"Updated window '{windowname}' with geometry and added text.")  # Debugging line
     else:
         # If the window does not exist, create it
