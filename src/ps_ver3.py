@@ -78,19 +78,19 @@ class PustInterpreter:
     mb = staticmethod(mb)
 
 # Create an instance for non-mainspace use
-p = PustInterpreter()
+ps = PustInterpreter()
 
 # Example usage of the interpreter
 if __name__ == "__main__":
     # Outside mainspace usage with input and if_stmt
-    p.cv("variable", p.iln("Type 1: "))
-    p.if_stmt("variable", "1", 
-        ["p.pln('Correct!')"], 
-        ["p.pln('Wrong!')"]
+    ps.cv("variable", p.iln("Type 1: "))
+    ps.if_stmt("variable", "1", 
+        ["ps.pln('Correct!')"], 
+        ["ps.pln('Wrong!')"]
     )
 
     # Inside mainspace usage
-    p.fn("main", [
+    ps.fn("main", [
         "cv('guess', iln('Guess the word: '))",
         "if_stmt('guess', 'Pust', [\"pln('You guessed correctly!')\"], [\"pln('Try again!')\"])"
     ])
