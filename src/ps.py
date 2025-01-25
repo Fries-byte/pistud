@@ -70,8 +70,11 @@ def if_stmt(var, value, code_if, code_else=None):  # Define if statement
             exec(f"p.{line.strip()}", globals())
 
 def execute_main(code):  # Define comments
+    # Modify this function to check for triple-quoted blocks and interpret them as main code
     for line in code.splitlines():
         stripped_line = line.strip()
+        if stripped_line.startswith('"""') and stripped_line.endswith('"""'):
+            stripped_line = stripped_line[3:-3].strip()  # Remove triple quotes
         if "//" in stripped_line:
             stripped_line = stripped_line.split("//", 1)[0].strip()  # Remove inline comments
         if stripped_line == "":
@@ -86,8 +89,11 @@ def execute_main(code):  # Define comments
 
 def fn(name=None, code=None):  # Define function
     if name and code:
-        # Process multiline strings properly
-        lines = [line.strip() for line in code.strip().splitlines() if line.strip()]
+        # Process multiline strings properly using triple quotes
+        if code.startswith('"""') and code.endswith('"""'):
+            lines = [line.strip() for line in code.strip()[3:-3].splitlines() if line.strip()]
+        else:
+            lines = [line.strip() for line in code.strip().splitlines() if line.strip()]
         functions[name] = lines  # Define the function
         if name == "main":  # Define mainspace
             execute_main(code)
