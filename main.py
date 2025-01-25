@@ -1,4 +1,4 @@
-from src import p
+from src import ps
 
 
 p.fn("main", """
