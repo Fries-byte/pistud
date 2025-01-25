@@ -15,90 +15,90 @@ variables = {}  # Dictionary to store variables
 functions = {}  # Dictionary to store functions
 windows = {}  # Dictionary to store created windows
 
-# Function to create window
-def cw(wtitle, geo):  
+def cw(wtitle, geo):  # Define create window
     window = Tk()
-    window.title(wtitle)  
-    window.geometry(geo)  
-    return window
+    window.title(wtitle)  # Set the window's title
+    window.geometry(geo)  # Set the window's geometry
+    return window  # Return the created window instance
 
-# Function to handle window loop
-def wl(wname):  
-    if wname in windows:  
-        windows[wname].mainloop()  
+def wl(wname):  # Define window loop
+    if wname in windows:  # Check if the window exists
+        windows[wname].mainloop()  # Open the window
     else:
-        print(f"Error: Window '{wname}' not found.")
+        print(f"Error: Window '{wname}' not found.")  # Handle missing window
 
-# Function to create or assign variable
-def cv(var, val):  
-    global variables  
-    variables[var] = val  
+def cv(var, val):  # Define create variable
+    global variables  # Ensure `variables` is globally accessible
+    if isinstance(val, Tk):  # If the value is a Tk window, store it in the windows dictionary
+        windows[var] = val
+    else:
+        variables[var] = val  # Otherwise, store it as a normal variable
 
-# Function to open URL
-def wo(url):  
+def wo(url):  # Define web open
+    print(f"Opening URL: {url}")
     webbrowser.open(url)
 
-# Function to show message box
-def mb(type, title, message):  
-    method_name = "show" + type  
+def mb(type, title, message):  # Define message box
+    method_name = "show" + type  # Construct method name dynamically
     method = getattr(messagebox, method_name, None)
     if method:
         method(title, message)
     else:
         print(f"Error: '{method_name}' is not a valid messagebox type.")
 
-# Function to print a value (or variable)
-def pln(l):  
+def pln(l):  # Define print line
     if l in variables:
-        print(variables[l])  
+        print(variables[l])  # Print its value from the dictionary
     else:
-        print(l)  
+        print(l)  # Print the value directly
 
-# Function to get input from the user
-def iln(prompt):  
-    value = input(prompt)  
+def iln(prompt):  # Define input line
+    value = input(prompt)  # Take input from the user
     return value
 
-# Function to handle if statements
-def if_stmt(var, condition, value, code_if, code_else=None):
+# Adding the functionality for includes => and => logic.
+def if_stmt(var, *args):
     global variables
-    
-    # Ensure that the variable exists
-    if var in variables:
-        if condition == "includes =>":  # Check if value is included in the variable's value
-            if value in variables[var]:
-                for line in code_if:
-                    exec(line, globals())  # Execute if the condition is met
-        elif condition == "=>":  # Check if variable is exactly equal to value
-            if variables[var] == value:
-                for line in code_if:
-                    exec(line, globals())  # Execute if the condition is met
-        elif code_else:  # If condition is not met and there is an else block
-            for line in code_else:
-                exec(line, globals())  # Execute else block
+    if isinstance(args[0], str) and args[1] == "=>":  # Check for "includes =>" syntax
+        value = args[2]
+        if value in variables.get(var, ""):  # Check if the string is inside the variable's value
+            for line in args[3]:
+                exec(line, globals())
+        else:
+            if len(args) > 4:
+                for line in args[4]:
+                    exec(line, globals())
+    elif args[0] == "=>":  # The original equality check
+        value = args[1]
+        if variables.get(var) == value:
+            for line in args[2]:
+                exec(line, globals())
+        else:
+            if len(args) > 3:
+                for line in args[3]:
+                    exec(line, globals())
 
-# Function to execute the main code
-def execute_main(code):  
+def execute_main(code):  # Define comments
     for line in code.splitlines():
         stripped_line = line.strip()
         if "//" in stripped_line:
             stripped_line = stripped_line.split("//", 1)[0].strip()  # Remove inline comments
         if stripped_line == "":
-            continue  
+            continue  # Ignore blank lines
         try:
-            if stripped_line.split('(')[0] in dir(PustInterpreter):  
+            if stripped_line.split('(')[0] in dir(PustInterpreter):  # Check if it matches Pust methods
                 exec(f"ps.{stripped_line}", globals())
             else:
                 exec(stripped_line, globals())
         except Exception as e:
-            print(f"Error in mainspace: {e}")
+            print(f"Error in mainspace: {e}")  # Handle runtime errors gracefully
 
-# Function to define a function
-def fn(name=None, code=None):  
+def fn(name=None, code=None):  # Define function
     if name and code:
+        # Process multiline strings properly
         lines = [line.strip() for line in code.strip().splitlines() if line.strip()]
-        functions[name] = lines  
-        if name == "main":  
+        functions[name] = lines  # Define the function
+        if name == "main":  # Define mainspace
             execute_main(code)
     elif name:
         if name in functions:
@@ -116,7 +116,7 @@ class PustInterpreter:
     fn = staticmethod(fn)
     if_stmt = staticmethod(if_stmt)
     mb = staticmethod(mb)
-    wl = staticmethod(wl)
+    wl = staticmethod(wl)  # Add window loop to interpreter
 
 # Create an instance for non-mainspace use
 ps = PustInterpreter()
