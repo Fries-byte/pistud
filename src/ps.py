@@ -29,10 +29,7 @@ def wl(wname):  # Define window loop
 
 def cv(var, val):  # Define create variable
     global variables  # Ensure `variables` is globally accessible
-    if isinstance(val, Tk):  # If the value is a Tk window, store it in the windows dictionary
-        windows[var] = val
-    else:
-        variables[var] = val  # Otherwise, store it as a normal variable
+    variables[var] = val  # Store the value in the `variables` dictionary
 
 def wo(url):  # Define web open
     webbrowser.open(url)
@@ -51,7 +48,7 @@ def pln(l):  # Define print line
     else:
         print(l)  # Print the value directly
 
-def iln(prompt):  # Define input line
+def iln(prompt):  # Define input line (to take user input)
     value = input(prompt)  # Take input from the user
     return value
 
@@ -106,3 +103,4 @@ class PustInterpreter:
 
 # Create an instance for non-mainspace use
 ps = PustInterpreter()
+
