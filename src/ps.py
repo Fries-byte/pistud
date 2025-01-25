@@ -27,7 +27,7 @@ def ct(windowname, geo, text):  # Define create title with geo and text
     if windowname in windows:  # Check if the window exists in the dictionary
         label = Label(windowname, text=text)  # Create a label with the provided text
         label.pack()  # Pack the label into the window
-        window.update()  # Force the window to update and reflect changes immediately
+        windowname.update()  # Force the window to update and reflect changes immediately
         print(f"Updated window '{windowname}' with geometry and added text.")  # Debugging line
 
     return window  # Return the window instance
