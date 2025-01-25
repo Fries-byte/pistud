@@ -7,7 +7,6 @@ from tkinter import *  # Importing tkinter for software builder
 # Created by Pust-Lang (GitHub)
 # and written by Fries-byte (GitHub)
 # Learn more on our website or README.md
-#
 # 2025 - presents | The Programming Language Pust
 # =--=--=--=--=--=--=--=--=--=--=--=--=
 
@@ -15,6 +14,7 @@ variables = {}  # Dictionary to store variables
 functions = {}  # Dictionary to store functions
 windows = {}  # Dictionary to store created windows
 
+# Create window function (cw)
 def cw(wtitle, geo):  # Define create window
     window = Tk()
     window.title(wtitle)  # Set the window's title
@@ -29,7 +29,10 @@ def wl(wname):  # Define window loop
 
 def cv(var, val):  # Define create variable
     global variables  # Ensure `variables` is globally accessible
-    variables[var] = val  # Store the value in the `variables` dictionary
+    if isinstance(val, Tk):  # If the value is a Tk window, store it in the windows dictionary
+        windows[var] = val
+    else:
+        variables[var] = val  # Otherwise, store it as a normal variable
 
 def wo(url):  # Define web open
     webbrowser.open(url)
@@ -48,7 +51,7 @@ def pln(l):  # Define print line
     else:
         print(l)  # Print the value directly
 
-def iln(prompt):  # Define input line (to take user input)
+def iln(prompt):  # Define input line
     value = input(prompt)  # Take input from the user
     return value
 
@@ -56,10 +59,10 @@ def if_stmt(var, value, code_if, code_else=None):  # Define if statement
     global variables  # Ensure `variables` is globally accessible
     if var in variables and variables[var] == value:
         for line in code_if:
-            exec(line, globals())
+            exec(f"p.{line.strip()}", globals())
     elif code_else:
         for line in code_else:
-            exec(line, globals())
+            exec(f"p.{line.strip()}", globals())
 
 def execute_main(code):  # Define comments
     for line in code.splitlines():
@@ -70,7 +73,7 @@ def execute_main(code):  # Define comments
             continue  # Ignore blank lines
         try:
             if stripped_line.split('(')[0] in dir(PustInterpreter):  # Check if it matches Pust methods
-                exec(f"ps.{stripped_line}", globals())
+                exec(f"p.{stripped_line}", globals())
             else:
                 exec(stripped_line, globals())
         except Exception as e:
@@ -102,11 +105,17 @@ class PustInterpreter:
     wl = staticmethod(wl)  # Add window loop to interpreter
 
 # Create an instance for non-mainspace use
-ps = PustInterpreter()
+p = PustInterpreter()
 
-# Now, you can store user input into a variable using the following code:
-cv("user_name", iln("Enter your name: "))  # Get input and store in "user_name"
-pln(f"Hello, {variables['user_name']}!")  # Print the entered name
+# Test code
+if __name__ == "__main__": 
+    # Define a function outside of mainspace
+    p.fn("sigma", """
+    wo("https://google.com")
+    """)
 
-# Example usage of if statement with input
-if_stmt("user_name", "Alice", ["pln('Hello, Alice!')"], ["pln('Hello, stranger!')"])
+    # Define and run mainspace code
+    p.fn("main", """
+    cv("mywindow", cw("My Auto Window", "400x300")) // Create a window and store it as a variable
+    wl("mywindow") // Open the window
+    """)
