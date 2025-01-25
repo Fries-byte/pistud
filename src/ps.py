@@ -16,18 +16,22 @@ functions = {}  # Dictionary to store functions
 windows = {}  # Dictionary to store created windows
 
 def cw(wtitle, geo):  # Define create window
-    window = Tk()
+    window = Tk()  # Create a Tkinter window object
     window.title(wtitle)  # Set the window's title
     window.geometry(geo)  # Set the window's geometry
     windows[wtitle] = window  # Store window in the windows dictionary with the key wtitle
     print(f"Created and stored window '{wtitle}' in windows.")  # Debugging line
     return window  # Return the created window instance
 
-def ct(ttitle, geo):  # Define create window
-    window.title(ttitle)  # Set the window's title using ttitle
-    window.geometry(geo)  # Set the window's geometry
-    windows[ttitle] = window  # Store the window in the dictionary using ttitle as the key
-    return window  # Return the created window instance
+def ct(ttitle, text):  # Define create title (modify existing window with title and text)
+    if ttitle in windows:  # Check if the window exists in the dictionary
+        window = windows[ttitle]  # Get the window from the dictionary
+        window.title(ttitle)  # Set the window's title using ttitle
+        label = Label(window, text=text)  # Create a label with the provided text
+        label.pack()  # Pack the label into the window
+        print(f"Set title and added text to window '{ttitle}'.")  # Debugging line
+    else:
+        print(f"Error: Window '{ttitle}' not found.")  # Handle missing window
 
 def wl(wname):  # Define window loop
     if wname in windows:  # Check if the window exists
