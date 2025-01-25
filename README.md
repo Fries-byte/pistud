@@ -51,14 +51,19 @@ However, if you're curious and would like to experiment: <br>
 
 1. Clone the repository: <br> <br>
   clone repo:
+
    ```bash
    git clone https://github.com/Pust-Lang/Pust
    ```
    <br>
    clone ide (Recommended):
-  ```bash
-  git clone https://github.com/Pust-Lang/pustIDE
-  ```
+   <br> <br>
+   
+   ```bash
+   git clone https://github.com/Pust-Lang/Pust
+   ```
+   
+   <br><br>
 3. Run the files <br>
    Run and open the file named 'main.py', you'll be seeing "ps.fn("main", """"""). In between the """""" is where you code, you may also not use Mainspace, but you need to add ps. , like this: ps.pln("Hello World!") <br>
    To learn Pust, go in our website and click on "cource" (still in development!) <br>
