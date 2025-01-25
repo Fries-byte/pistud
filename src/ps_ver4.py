@@ -85,10 +85,10 @@ class PustInterpreter:
     if_stmt = staticmethod(if_stmt)
     mb = staticmethod(mb)
 
-p = PustInterpreter()
+ps = PustInterpreter()
 
 if __name__ == "__main__":
-    p.fn("main", """
+    ps.fn("main", """
 // Define a nested function
 fn("Best", ['wo("https://google.com")'])
 
