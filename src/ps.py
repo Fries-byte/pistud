@@ -23,15 +23,25 @@ def cw(wtitle, geo):  # Define create window
     print(f"Created and stored window '{wtitle}' in windows.")  # Debugging line
     return window  # Return the created window instance
 
-def ct(ttitle, text):  # Define create title (modify existing window with title and text)
-    if ttitle in windows:  # Check if the window exists in the dictionary
-        window = windows[ttitle]  # Get the window from the dictionary
-        window.title(ttitle)  # Set the window's title using ttitle
+def ct(windowname, geo, text):  # Define create title with geo and text
+    if windowname in windows:  # Check if the window exists in the dictionary
+        window = windows[windowname]  # Get the window from the dictionary
+        window.geometry(geo)  # Set the window's geometry
+        window.title(windowname)  # Set the window's title
         label = Label(window, text=text)  # Create a label with the provided text
         label.pack()  # Pack the label into the window
-        print(f"Set title and added text to window '{ttitle}'.")  # Debugging line
+        print(f"Updated window '{windowname}' with geometry and added text.")  # Debugging line
     else:
-        print(f"Error: Window '{ttitle}' not found.")  # Handle missing window
+        # If the window does not exist, create it
+        window = Tk()  # Create a new Tkinter window
+        window.title(windowname)  # Set the window's title
+        window.geometry(geo)  # Set the window's geometry
+        label = Label(window, text=text)  # Create a label with the provided text
+        label.pack()  # Pack the label into the window
+        windows[windowname] = window  # Store the new window in the windows dictionary
+        print(f"Created and stored new window '{windowname}' with geometry and text.")  # Debugging line
+
+    return window  # Return the window instance
 
 def wl(wname):  # Define window loop
     if wname in windows:  # Check if the window exists
