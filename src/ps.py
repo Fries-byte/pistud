@@ -1,6 +1,6 @@
 import webbrowser  # Importing webbrowser to open sites
 from tkinter import messagebox  # Importing messagebox to give info, warning, error
-from tkinter import * # Importing tkinter for software builder
+from tkinter import *  # Importing tkinter for software builder
 
 # =--=--=--=--=--=--=--=--=--=--=--=--=
 # Pust's Interpreter source
@@ -17,11 +17,6 @@ windows = {}  # Dictionary to store created windows
 
 def cw(wtitle, geo):  # Define create window
     window = Tk()
-    window.title(wtitle)  # Set the window's title
-    window.geometry(geo)  # Set the window's geometry
-    return window  # Return the created window instance
-
-def ct(ttitle, geo):  # Define create window
     window.title(wtitle)  # Set the window's title
     window.geometry(geo)  # Set the window's geometry
     return window  # Return the created window instance
@@ -64,10 +59,10 @@ def if_stmt(var, value, code_if, code_else=None):  # Define if statement
     global variables  # Ensure `variables` is globally accessible
     if var in variables and variables[var] == value:
         for line in code_if:
-            exec(f"p.{line.strip()}", globals())
+            exec(line, globals())
     elif code_else:
         for line in code_else:
-            exec(f"p.{line.strip()}", globals())
+            exec(line, globals())
 
 def execute_main(code):  # Define comments
     for line in code.splitlines():
@@ -78,7 +73,7 @@ def execute_main(code):  # Define comments
             continue  # Ignore blank lines
         try:
             if stripped_line.split('(')[0] in dir(PustInterpreter):  # Check if it matches Pust methods
-                exec(f"p.{stripped_line}", globals())
+                exec(f"ps.{stripped_line}", globals())
             else:
                 exec(stripped_line, globals())
         except Exception as e:
