@@ -49,12 +49,13 @@ Download [python](https://python.org) before crossing the line! <br>
 🚧 The language is in its early stages. 🚧  <br>
 However, if you're curious and would like to experiment: <br>
 
-1. Clone the repository: <br>
+1. Clone the repository: <br> <br>
   clone repo:
    ```bash
    git clone https://github.com/Pust-Lang/Pust
    ```
-  clone ide (Recommended):
+   <br>
+   clone ide (Recommended):
   ```bash
   git clone https://github.com/Pust-Lang/pustIDE
   ```
