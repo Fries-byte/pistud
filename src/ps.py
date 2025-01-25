@@ -110,7 +110,7 @@ class PustInterpreter:
     wl = staticmethod(wl)  # Add window loop to interpreter
 
 # Create an instance for non-mainspace use
-p = PustInterpreter()
+ps = PustInterpreter()
 
 # Test code
 if __name__ == "__main__": 
