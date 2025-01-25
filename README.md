@@ -29,7 +29,7 @@ Think **Rust**, but with **Pust** simplicity and elegance!
 
 - **Easy to use**: Pust is easy to use, like, pln, iln, fn, wo, if_stmt and cv!
 - **Usefull**: Pust is written it so that its easy to code for bigginers, it might also be usefull
-- **Software**: Currently this is not fully added yet, but in the furture this language
+- **Software**: Building software is slowly being implemented, and you can create windows and message boxes
 
 ---
 ## How to program
