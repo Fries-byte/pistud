@@ -111,16 +111,3 @@ class PustInterpreter:
 
 # Create an instance for non-mainspace use
 ps = PustInterpreter()
-
-# Test code
-if __name__ == "__main__": 
-    # Define a function outside of mainspace
-    p.fn("sigma", """
-    wo("https://google.com")
-    """)
-
-    # Define and run mainspace code
-    p.fn("main", """
-    cv("mywindow", cw("My Auto Window", "400x300")) // Create a window and store it as a variable
-    wl("mywindow") // Open the window
-    """)
