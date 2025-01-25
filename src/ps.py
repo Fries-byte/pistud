@@ -1,12 +1,13 @@
 import webbrowser  # Importing webbrowser to open sites
 from tkinter import messagebox  # Importing messagebox to give info, warning, error
-from tkinter import *  # Importing tkinter for software builder
+from tkinter import * # Importing tkinter for software builder
 
 # =--=--=--=--=--=--=--=--=--=--=--=--=
 # Pust's Interpreter source
 # Created by Pust-Lang (GitHub)
 # and written by Fries-byte (GitHub)
 # Learn more on our website or README.md
+#
 # 2025 - presents | The Programming Language Pust
 # =--=--=--=--=--=--=--=--=--=--=--=--=
 
@@ -14,9 +15,13 @@ variables = {}  # Dictionary to store variables
 functions = {}  # Dictionary to store functions
 windows = {}  # Dictionary to store created windows
 
-# Create window function (cw)
 def cw(wtitle, geo):  # Define create window
     window = Tk()
+    window.title(wtitle)  # Set the window's title
+    window.geometry(geo)  # Set the window's geometry
+    return window  # Return the created window instance
+
+def ct(ttitle, geo):  # Define create window
     window.title(wtitle)  # Set the window's title
     window.geometry(geo)  # Set the window's geometry
     return window  # Return the created window instance
@@ -28,7 +33,7 @@ def wl(wname):  # Define window loop
         print(f"Error: Window '{wname}' not found.")  # Handle missing window
 
 def cv(var, val):  # Define create variable
-    global variables  # Ensure `variables` is globally accessible
+    global variables  # Ensure variables is globally accessible
     if isinstance(val, Tk):  # If the value is a Tk window, store it in the windows dictionary
         windows[var] = val
     else:
@@ -56,7 +61,7 @@ def iln(prompt):  # Define input line
     return value
 
 def if_stmt(var, value, code_if, code_else=None):  # Define if statement
-    global variables  # Ensure `variables` is globally accessible
+    global variables  # Ensure variables is globally accessible
     if var in variables and variables[var] == value:
         for line in code_if:
             exec(f"p.{line.strip()}", globals())
@@ -105,6 +110,4 @@ class PustInterpreter:
     wl = staticmethod(wl)  # Add window loop to interpreter
 
 # Create an instance for non-mainspace use
-ps = PustInterpreter()
-
-
+p = PustInterpreter()
