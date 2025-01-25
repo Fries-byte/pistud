@@ -23,12 +23,24 @@ def cw(wtitle, geo):  # Define create window
     print(f"Created and stored window '{wtitle}' in windows.")  # Debugging line
     return window  # Return the created window instance
 
-def ct(windowname, geo, text):  # Define create title with geo and text
+def ct(windowname, geo, text):  # Define create title with geo (for text position) and text
     if windowname in windows:  # Check if the window exists in the dictionary
-        label = Label(windowname, text=text)  # Create a label with the provided text
-        label.pack()  # Pack the label into the window
-        windowname.update()  # Force the window to update and reflect changes immediately
-        print(f"Updated window '{windowname}' with geometry and added text.")  # Debugging line
+        window = windows[windowname]  # Get the window object from the dictionary
+        window.title(windowname)  # Set the window's title
+        # Parse geo to extract x and y coordinates
+        x, y = geo.split('x')  # Assuming geo is in format "x,y" (e.g., "100x150")
+        label = Label(window, text=text)  # Create a label with the provided text
+        label.place(x=int(x), y=int(y))  # Position the label at the specified coordinates (x, y)
+        window.update()  # Force the window to update and reflect changes immediately
+        print(f"Updated window '{windowname}' with text at position ({x}, {y}).")  # Debugging line
+    else:
+        print(f"Error: Window '{windowname}' not found.")  # Handle missing window
+
+def wl(wname):  # Define window loop
+    if wname in windows:  # Check if the window exists
+        windows[wname].mainloop()  # Open the window
+    else:
+        print(f"Error: Window '{wname}' not found.")  # Handle missing window
 
     return window  # Return the window instance
 
