@@ -1,6 +1,9 @@
 import urllib.request
-if version == 5:
-  code5 = urllib.request.urlopen("https://raw.githubusercontent.com/Pust-Lang/pust/refs/heads/main/src/ps.py").read().decode()
+if version == 6:
+  code6 = urllib.request.urlopen("https://raw.githubusercontent.com/Pust-Lang/pust/refs/heads/main/src/ps.py").read().decode()
+  exec(code6)
+elif version == 5:
+  code5 = urllib.request.urlopen("https://raw.githubusercontent.com/Pust-Lang/pust/refs/heads/main/src/ps_ver5.py").read().decode()
   exec(code5)
 elif version == 4:
   code4 = urllib.request.urlopen("https://github.com/Pust-Lang/pust/raw/refs/heads/main/src/ps_ver4.py").read().decode()
