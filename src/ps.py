@@ -19,6 +19,9 @@ functions = {}
 windows = {}
 buttons = {}
 
+def py(execpython): # Define executing python code
+    exec(execpython) # Run python code
+
 def os(executeos): # Define operating system
     os.system(executeos) # Executes bash code on the machine
     
