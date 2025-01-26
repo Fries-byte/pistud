@@ -1,6 +1,7 @@
 import webbrowser  # Importing webbrowser to open sites
 from tkinter import messagebox  # Importing messagebox to give info, warning, error
 from tkinter import *  # Importing tkinter for software builder
+import urllib.request # Importing urllib to import packages
 
 # =--=--=--=--=--=--=--=--=--=--=--=--=
 # Pust's Interpreter source
@@ -16,14 +17,17 @@ functions = {}
 windows = {}
 buttons = {}
 
-def cw(wtitle, geo):  # Create a window
+def package(packport): # Define package loader
+    exec(urllib.request.urlopen(packport).read().decode()) # Gets and decodes the package
+    
+def cw(wtitle, geo):  # Define create window
     window = Tk()
     window.title(wtitle)
     window.geometry(geo)
     windows[wtitle] = window
     return window
 
-def ct(windowname, geo, text):  # Create text in a window
+def ct(windowname, geo, text):  # Define create text
     if windowname in windows:
         window = windows[windowname]
         x, y = map(int, geo.split('x'))
@@ -32,19 +36,19 @@ def ct(windowname, geo, text):  # Create text in a window
     else:
         print(f"Error: Window '{windowname}' not found.")
 
-def wl(wname):  # Start window loop
+def wl(wname):  # Define window loop
     if wname in windows:
         windows[wname].mainloop()
     else:
         print(f"Error: Window '{wname}' not found.")
 
-def cv(var, val):  # Create variable
+def cv(var, val):  # Define create variable
     if isinstance(val, Tk):
         windows[var] = val
     else:
         variables[var] = val
 
-def wo(url):  # Open a website
+def wo(url):  # Define web open
     webbrowser.open(url)
 
 def mb(type, title, message): # Define message box
@@ -56,16 +60,16 @@ def mb(type, title, message): # Define message box
         print(f"Error: '{method_name}' is not a valid messagebox type.")
 
 
-def pln(l):  # Print a line
+def pln(l):  # Define print line
     if l in variables:
         print(variables[l])
     else:
         print(l)
 
-def iln(prompt):  # Input line
+def iln(prompt):  # Define input line
     return input(prompt)
 
-def if_stmt(var, value, code_if, code_else=None):
+def if_stmt(var, value, code_if, code_else=None): # Define if statement
     if var in variables:
         if variables[var] == value:
             try:
