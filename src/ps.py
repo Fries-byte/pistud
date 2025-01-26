@@ -151,6 +151,50 @@ def execute_code_block(code):
             print(f"Error executing code: {e}")
 
 
+# Define mainspace execution
+def execute_main(code):  
+    """
+    Parse and execute mainspace code.
+    :param code: Multiline string of code.
+    """
+    for line in code.splitlines():
+        stripped_line = line.strip()
+        if stripped_line.startswith('"""') and stripped_line.endswith('"""'):
+            stripped_line = stripped_line[3:-3].strip()  # Remove triple quotes
+        if "//" in stripped_line:
+            stripped_line = stripped_line.split("//", 1)[0].strip()  # Remove inline comments
+        if stripped_line == "":
+            continue  # Ignore blank lines
+        try:
+            exec(stripped_line, globals())
+        except Exception as e:
+            print(f"Error in mainspace: {e}")
+
+
+# Define function
+def fn(name=None, code=None):  
+    """
+    Define or execute functions.
+    :param name: Name of the function.
+    :param code: Multiline string of function code.
+    """
+    if name and code:
+        # Process multiline strings properly using triple quotes
+        if code.startswith('"""') and code.endswith('"""'):
+            lines = [line.strip() for line in code.strip()[3:-3].splitlines() if line.strip()]
+        else:
+            lines = [line.strip() for line in code.strip().splitlines() if line.strip()]
+        functions[name] = lines  # Define the function
+        if name == "main":  # Define mainspace
+            execute_main(code)
+    elif name:
+        if name in functions:
+            for line in functions[name]:
+                execute_main(line)
+        else:
+            print(f"Function '{name}' is not defined.")
+
+
 # Alias functions for the PustInterpreter
 class PustInterpreter:
     cv = staticmethod(cv)
@@ -160,6 +204,8 @@ class PustInterpreter:
     ct = staticmethod(ct)
     cb = staticmethod(cb)
     bc = staticmethod(bc)
+    fn = staticmethod(fn)
+    mb = staticmethod(mb)
     if_stmt = staticmethod(if_stmt)
 
 
