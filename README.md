@@ -37,10 +37,12 @@ Think **Rust**, but with **Pust** simplicity and elegance!
 - **Print**: To print in Pust in use pln("") or ps.pln("") if it isnt in mainspace <br> <br>
 - **Input**: If you want user input, use iln("") or add the ps. if not in mainspace, and this is how to give an input a variable to add in an if statement or print: cv("variable", "put anything you want, it wont be used") = iln("Hello: "), and it'll take the user input and save it into the variable <br> <br>
 - **if_stmt**: to use an if statement, use ```ps.if_stmt("variable", "value", ['pln("Hello!")'], ['pln("Bye!")'])```, this part "variable", "value", you could say if variable is value then pln("Hello!") else pln("Bye!"), else is optinal. ```ps.if_stmt(if > "variable", is > "value", then > ['pln("Hello!")'], else > ['pln("Bye!")'])```. <br> <br>
+- **Button**: To create a button use ```cb("parent", "130,150 position", "150,30 size", "name")```, at you've created a button! under here you'll see how to run something with a button <br> <br>
+- **Button Click**: to register a click on a button, use ```bc("button name", ["fn(FuncName)"])```, it can only run functions, so use p.fn. <br> <br>
 - **Functions**: Currently sometimes functions does not work in Mainspace, so you have to use with p. : ```ps.fn("MyFunc", """code""")```, functions cannot be created in mainspace, but mainspace can run functions <br> <br>
 - **Variables**: Variables, to create a variable, use cv("VariableName", "Value"), to print or Input a variable, use pln("VariableName") and input, if its outside of Mainspace use variable = ps.iln("Type Hello: ") like in basic python. <br> <br>
 - **Message Box**: Message boxes, like those info, warning and error messages, well now you can program them to show up! simply use ```ps.ms("type", "title", "text/message")```, type options: info, warning and error . This is one of the first things of software, or the beginning. <br> <br>
-- **Window Creator**: To create a window, use ```cv("mywindow", cw("Name", "400x300"))```, and to make the window show up, use ```wl("mywindow")```. <br> <br>
+- **Window**: To create a window, use ```cv("mywindow", cw("Name", "400x300"))```, and to make the window show up, use ```wl("mywindow")```. <br> <br>
 - **Copy Paste**: mainspace ``` ps.fn("main", [' code here ']) ```, print ``` ps.pln('Hello World!') ```, input ``` ps.iln('Type somthing: ') ```, variables ``` ps.cv('VName', 'Vvalue') ```, if statement ```ps.if_stmt("variable", "value", ['pln("Hello!")'], ['pln("Bye!")'])```, web open ```ps.wo('url')```, message box ```ps.ms("type", "title", "text/message")```, functions ```ps.fn("MyFunc", """code""")```. <br> <br>
 
 
