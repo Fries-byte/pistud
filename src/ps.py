@@ -1,6 +1,6 @@
 import webbrowser  # Importing webbrowser to open sites
 from tkinter import messagebox  # Importing messagebox to give info, warning, error
-from tkinter import * # Importing tkinter for software builder
+from tkinter import *  # Importing tkinter for software builder
 
 # =--=--=--=--=--=--=--=--=--=--=--=--=
 # Pust's Interpreter source
@@ -14,115 +14,154 @@ from tkinter import * # Importing tkinter for software builder
 variables = {}  # Dictionary to store variables
 functions = {}  # Dictionary to store functions
 windows = {}  # Dictionary to store created windows
+buttons = {}  # Dictionary to store created buttons
 
-def cw(wtitle, geo):  # Define create window
-    window = Tk()  # Create a Tkinter window object
-    window.title(wtitle)  # Set the window's title
-    window.geometry(geo)  # Set the window's geometry
-    windows[wtitle] = window  # Store window in the windows dictionary with the key wtitle
-    print(f"Created and stored window '{wtitle}' in windows.")  # Debugging line
-    return window  # Return the created window instance
 
-def ct(windowname, geo, text):  # Define create title with geo (for text position) and text
-    if windowname in windows:  # Check if the window exists in the dictionary
-        window = windows[windowname]  # Get the window object from the dictionary
-        window.title(windowname)  # Set the window's title
-        # Parse geo to extract x and y coordinates
-        x, y = geo.split('x')  # Assuming geo is in format "x,y" (e.g., "100x150")
-        label = Label(window, text=text)  # Create a label with the provided text
-        label.place(x=int(x), y=int(y))  # Position the label at the specified coordinates (x, y)
-        window.update()  # Force the window to update and reflect changes immediately
-        print(f"Updated window '{windowname}' with text at position ({x}, {y}).")  # Debugging line
+# Define create window
+def cw(wtitle, geo):  
+    window = Tk()
+    window.title(wtitle)
+    window.geometry(geo)
+    windows[wtitle] = window
+    return window
+
+
+# Define create text
+def ct(windowname, pos, size, text):  
+    """
+    Create and place text within a parent window.
+    :param windowname: Parent window name.
+    :param pos: Text position in "x,y" format.
+    :param size: Text size in "width,height" format.
+    :param text: Text to display.
+    """
+    if windowname in windows:
+        x, y = map(int, pos.split(','))  # Parse x and y coordinates
+        width, height = map(int, size.split(','))  # Parse width and height
+        label = Label(windows[windowname], text=text, width=width, height=height)
+        label.place(x=x, y=y)
+        windows[windowname].update()
     else:
-        print(f"Error: Window '{windowname}' not found.")  # Handle missing window
+        print(f"Error: Window '{windowname}' not found.")
 
-def wl(wname):  # Define window loop
-    if wname in windows:  # Check if the window exists
-        windows[wname].mainloop()  # Open the window
+
+# Define create button
+def cb(parent, pos, size, text):  
+    if parent in windows:
+        x, y = map(int, pos.split(','))
+        width, height = map(int, size.split(','))
+        button = Button(windows[parent], text=text)
+        button.place(x=x, y=y, width=width, height=height)
+        buttons[text] = button
+        return button
     else:
-        print(f"Error: Window '{wname}' not found.")  # Handle missing window
+        print(f"Error: Window '{parent}' not found.")
 
-    return window  # Return the window instance
 
-def wl(wname):  # Define window loop
-    if wname in windows:  # Check if the window exists
-        windows[wname].mainloop()  # Open the window
+# Define button click
+def bc(button_text, code):  
+    if button_text in buttons:
+        def on_click():
+            for line in code:
+                try:
+                    exec(line, globals())
+                except Exception as e:
+                    print(f"Error executing button code: {e}")
+
+        buttons[button_text].config(command=on_click)
     else:
-        print(f"Error: Window '{wname}' not found.")  # Handle missing window
+        print(f"Error: Button '{button_text}' not found.")
 
-def cv(var, val):  # Define create variable
-    global variables  # Ensure variables is globally accessible
-    if isinstance(val, Tk):  # If the value is a Tk window, store it in the windows dictionary
-        windows[var] = val
+
+# Define window loop
+def wl(wname):  
+    if wname in windows:
+        windows[wname].mainloop()
     else:
-        variables[var] = val  # Otherwise, store it as a normal variable
+        print(f"Error: Window '{wname}' not found.")
 
-def wo(url):  # Define web open
-    webbrowser.open(url)
 
-def mb(type, title, message):  # Define message box
-    method_name = "show" + type  # Construct method name dynamically
+# Define create variable
+def cv(var, val):  
+    variables[var] = val
+
+
+# Define web open
+def wo(url):  
+    try:
+        webbrowser.open(url)
+    except Exception as e:
+        print(f"Error opening URL: {e}")
+
+
+# Define message box
+def mb(type, title, message):  
+    method_name = "show" + type.capitalize()
     method = getattr(messagebox, method_name, None)
     if method:
         method(title, message)
     else:
         print(f"Error: '{method_name}' is not a valid messagebox type.")
 
-def pln(l):  # Define print line
+
+# Define print line
+def pln(l):  
     if l in variables:
-        print(variables[l])  # Print its value from the dictionary
+        print(variables[l])
     else:
-        print(l)  # Print the value directly
+        print(l)
 
-def iln(prompt):  # Define input line
-    value = input(prompt)  # Take input from the user
-    return value
 
-def execute_main(code):  # Define comments
-    # Modify this function to check for triple-quoted blocks and interpret them as main code
-    for line in code.splitlines():
-        stripped_line = line.strip()
-        if stripped_line.startswith('"""') and stripped_line.endswith('"""'):
-            stripped_line = stripped_line[3:-3].strip()  # Remove triple quotes
-        if "//" in stripped_line:
-            stripped_line = stripped_line.split("//", 1)[0].strip()  # Remove inline comments
-        if stripped_line == "":
-            continue  # Ignore blank lines
+# Define if statement
+def if_stmt(variable, **kwargs):  
+    """
+    Execute conditional logic.
+    :param variable: Variable name or value to check.
+    :param kwargs: Supports 'includes', '=>', 'code', and 'else'.
+    """
+    includes = kwargs.get("includes")
+    value = kwargs.get("=>")
+    code = kwargs.get("code", [])
+    else_code = kwargs.get("else", [])
+
+    # Handle includes logic
+    if includes and variable in variables:
+        if includes in variables[variable]:
+            execute_code_block(code)
+        else:
+            execute_code_block(else_code)
+    elif variable in variables and variables[variable] == value:
+        execute_code_block(code)
+    elif variable == value:
+        execute_code_block(code)
+    else:
+        execute_code_block(else_code)
+
+
+# Execute a block of code
+def execute_code_block(code):  
+    """
+    Execute a list of code lines.
+    :param code: List of strings containing code lines.
+    """
+    for line in code:
         try:
-            if stripped_line.split('(')[0] in dir(PustInterpreter):  # Check if it matches Pust methods
-                exec(f"p.{stripped_line}", globals())
-            else:
-                exec(stripped_line, globals())
+            exec(line, globals())
         except Exception as e:
-            print(f"Error in mainspace: {e}")  # Handle runtime errors gracefully
+            print(f"Error executing code: {e}")
 
-def fn(name=None, code=None):  # Define function
-    if name and code:
-        # Process multiline strings properly using triple quotes
-        if code.startswith('"""') and code.endswith('"""'):
-            lines = [line.strip() for line in code.strip()[3:-3].splitlines() if line.strip()]
-        else:
-            lines = [line.strip() for line in code.strip().splitlines() if line.strip()]
-        functions[name] = lines  # Define the function
-        if name == "main":  # Define mainspace
-            execute_main(code)
-    elif name:
-        if name in functions:
-            for line in functions[name]:
-                execute_main(line)
-        else:
-            print(f"Function '{name}' is not defined.")
 
-# Alias the functions for mainspace and non-mainspace use
+# Alias functions for the PustInterpreter
 class PustInterpreter:
     cv = staticmethod(cv)
     wo = staticmethod(wo)
     pln = staticmethod(pln)
-    iln = staticmethod(iln)
-    fn = staticmethod(fn)
+    wl = staticmethod(wl)
+    ct = staticmethod(ct)
+    cb = staticmethod(cb)
+    bc = staticmethod(bc)
     if_stmt = staticmethod(if_stmt)
-    mb = staticmethod(mb)
-    wl = staticmethod(wl)  # Add window loop to interpreter
+
 
 # Create an instance for non-mainspace use
-p = PustInterpreter()
+ps = PustInterpreter()
