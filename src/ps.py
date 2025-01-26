@@ -2,6 +2,8 @@ import webbrowser  # Importing webbrowser to open sites
 from tkinter import messagebox  # Importing messagebox to give info, warning, error
 from tkinter import *  # Importing tkinter for software builder
 import urllib.request # Importing urllib to import packages
+import os # Importing OS to execute code on the machine
+
 
 # =--=--=--=--=--=--=--=--=--=--=--=--=
 # Pust's Interpreter source
@@ -17,6 +19,9 @@ functions = {}
 windows = {}
 buttons = {}
 
+def os(executeos): # Define operating system
+    os.system(executeos) # Executes bash code on the machine
+    
 def package(packport): # Define package loader
     exec(urllib.request.urlopen(packport).read().decode()) # Gets and decodes the package
     
