@@ -60,8 +60,8 @@ def cv(var, val):  # Define create variable
 def wo(url):  # Define web open
     webbrowser.open(url)
 
-def mb(type, title, message):  # Define message box
-    method_name = "show" + type  # Construct method name dynamically
+def mb(type, title, message): # Define message box
+    method_name = "show" + type.capitalize()
     method = getattr(messagebox, method_name, None)
     if method:
         method(title, message)
@@ -138,4 +138,4 @@ class PustInterpreter:
     wl = staticmethod(wl)  # Add window loop to interpreter
 
 # Create an instance for non-mainspace use
-ps = PustInterpreter()
+p = PustInterpreter()
