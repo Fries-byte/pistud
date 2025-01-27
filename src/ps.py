@@ -154,8 +154,6 @@ def fn(name=None, code=None):  # Define functions
     elif name in functions:
         for line in functions[name]:
             exec(line.strip(), globals())
-    elif name is publish:
-        print("Publishing package... (Will be send to get approved, else it wont be added to package.py)")
     else:
         print(f"Function '{name}' not found.")
 
