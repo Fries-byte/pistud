@@ -24,7 +24,7 @@ def py(execpython): # Define executing python code
 def os(executeos): # Define operating system
     os.system(executeos) # Executes bash code on the machine
     
-def package(packport): # Define package loader
+def load(packport): # Define package loader
     exec(urllib.request.urlopen(packport).read().decode()) # Gets and decodes the package
     
 def cw(wtitle, geo):  # Define create window
