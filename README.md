@@ -48,7 +48,7 @@ Think **Rust**, but with **Pust** simplicity and elegance!
 - **Copy Paste**: mainspace ``` ps.fn("main", [' code here ']) ```, print ``` ps.pln('Hello World!') ```, input ``` ps.iln('Type somthing: ') ```, variables ``` ps.cv('VName', 'Vvalue') ```, if statement ```ps.if_stmt("variable", "value", ['pln("Hello!")'], ['pln("Bye!")'])```, web open ```ps.wo('url')```, message box ```ps.ms("type", "title", "text/message")```, functions ```ps.fn("MyFunc", """code""")```. <br> <br>
 
 ## Useful Info
-**Importing Functions**: To import a function, use python's import system. ```import file``` thats it, run the function with ```fn("funcname")```
+**Importing Functions**: To import a function, use python's import system. ```import file``` thats it, run the function with ```fn("funcname")``` <br> <br>
 
 ## Getting Started
 Download [python](https://python.org) before downloading! <br>
