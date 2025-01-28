@@ -58,7 +58,7 @@ Clone ide (Recommended):
    <br><br>
 3. Run the files <br>
    Run and open the file named 'main.py', you'll be seeing "ps.fn("main", """"""). In between the """""" is where you code, you may also not use Mainspace, but you need to add ps. , like this: ps.pln("Hello World!") <br>
-   To learn Pust, go in our website and click on "cource" (still in development!) <br>
+   To learn Pust, go in our website and click on "course" <br>
 <hr>
 
 **Supports**: Linux, Windows, Mac.
