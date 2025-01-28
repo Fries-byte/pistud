@@ -43,17 +43,19 @@ Clone with git: <br>
 
 Clone the repository: <br> <br>
   clone repo:
-
-   ```bash
-   git clone https://github.com/Pust-Lang/Pust
-   ```
-   <br>
-Clone ide (Recommended):
+  Clone ide (Recommended):
    <br> <br>
    
    ```bash
    git clone https://github.com/Pust-Lang/pustIDE.git
    ```
+
+  <br>
+  
+   ```bash
+   git clone https://github.com/Pust-Lang/Pust
+   ```
+   
    
    <br><br>
 3. Run the files <br>
