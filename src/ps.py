@@ -1,10 +1,3 @@
-import webbrowser  # Importing webbrowser to open sites
-from tkinter import messagebox  # Importing messagebox to give info, warning, error
-from tkinter import *  # Importing tkinter for software builder
-import urllib.request # Importing urllib to import packages
-import os # Importing OS to execute code on the machine
-
-
 # =--=--=--=--=--=--=--=--=--=--=--=--=
 # Pust's Interpreter source
 # Created by Pust-Lang (GitHub)
@@ -13,6 +6,12 @@ import os # Importing OS to execute code on the machine
 #
 # 2025 - presents | The Programming Language Pust
 # =--=--=--=--=--=--=--=--=--=--=--=--=
+
+import webbrowser  # Importing webbrowser to open sites
+from tkinter import messagebox  # Importing messagebox to give info, warning, error
+from tkinter import *  # Importing tkinter for software builder
+import urllib.request # Importing urllib to import packages
+import os # Importing OS to execute code on the machine
 
 variables = {}
 functions = {}
@@ -156,7 +155,15 @@ def fn(name=None, code=None):  # Define functions
             exec(line.strip(), globals())
     else:
         print(f"Function '{name}' not found.")
-
+        
+def loop(code, n): # Define loop
+    if n == 0:
+        while True:
+            execute_main(code)
+    else:
+        for _ in range(n):
+            execute_main(code) 
+            
 class PustInterpreter:
     cv = staticmethod(cv)
     wo = staticmethod(wo)
