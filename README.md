@@ -42,7 +42,7 @@ Download [python](https://python.org) before downloading! <br>
 Clone with git: <br>
 
 Clone the repository: <br> <br>
-  clone repo:
+  
   Clone ide (Recommended):
    <br> <br>
    
@@ -51,6 +51,7 @@ Clone the repository: <br> <br>
    ```
 
   <br>
+  clone repo:
   
    ```bash
    git clone https://github.com/Pust-Lang/Pust
