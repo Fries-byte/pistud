@@ -41,7 +41,7 @@ Think **Rust**, but with **Pust** simplicity and elegance!
 - **Button**: To create a button use ```cb("parent", "130,150 position", "150,30 size", "name")```, at you've created a button! under here you'll see how to run something with a button <br> <br>
 - **Button Click**: to register a click on a button, use ```bc("button name", ["fn(FuncName)"])```, it can only run functions, so use p.fn. <br> <br>
 - **Functions**: Currently sometimes functions does not work in Mainspace, so you have to use with p. : ```ps.fn("MyFunc", """code""")```, functions cannot be created in mainspace, but mainspace can run functions <br> <br>
-- **Loops**: To loop something use ```loop("Code", 0)```, its that easy!
+- **Loops**: To loop something use ```loop("Code", 0)```, its that easy! <br> <br>
 - **Variables**: Variables, to create a variable, use cv("VariableName", "Value"), to print or Input a variable, use pln("VariableName") and input, if its outside of Mainspace use variable = ps.iln("Type Hello: ") like in basic python. <br> <br>
 - **Message Box**: Message boxes, like those info, warning and error messages, well now you can program them to show up! simply use ```ps.ms("type", "title", "text/message")```, type options: info, warning and error . This is one of the first things of software, or the beginning. <br> <br>
 - **Window**: To create a window, use ```cv("mywindow", cw("Name", "400x300"))```, and to make the window show up, use ```wl("mywindow")```. <br> <br>
