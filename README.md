@@ -9,7 +9,7 @@
 </p>
 <h4 align="center">
   
-  [Website](https://pust-lang.github.io/web/)
+  [Website](https://year-lang.github.io/web/)
   
 </h4>
 <hr>
