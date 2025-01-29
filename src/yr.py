@@ -1,6 +1,6 @@
 # =--=--=--=--=--=--=--=--=--=--=--=--=
-# Pust's Interpreter source
-# Created by Pust-Lang (GitHub)
+# Year's Interpreter source
+# Created by Year-Lang (GitHub)
 # and written by Fries-byte (GitHub)
 # Learn more on our website or README.md
 #
@@ -175,4 +175,4 @@ class PustInterpreter:
     wl = staticmethod(wl)
     cb = staticmethod(cb)
 
-ps = PustInterpreter()
+year = PustInterpreter()
