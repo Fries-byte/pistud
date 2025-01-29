@@ -175,4 +175,4 @@ class PustInterpreter:
     wl = staticmethod(wl)
     cb = staticmethod(cb)
 
-year = PustInterpreter()
+yr = PustInterpreter()
