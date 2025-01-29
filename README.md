@@ -14,18 +14,18 @@
 </h4>
 <hr>
 <p align="center">
-  <b>Pust</b> – A Rust-inspired programming language <br> 
+  <b>Year</b> – A Rust-inspired programming language <br> 
   This program is in alpha. The full code is still under development.
 </p>
 
 
 <br>
 
-## What is Pust?
+## What is Year?
 
-Pust is a new low-level programming language inspired by Rust.  
+Year is a new low-level programming language inspired by Rust.  
 Our goal is to offer powerful, safe, and concurrent programming capabilities with an easier learning curve.  
-Think **Rust**, but with **Pust** simplicity and elegance!
+Think **Rust**, but with **Year** simplicity and elegance!
 
 ---
 
@@ -50,21 +50,21 @@ Clone the repository: <br> <br>
    <br> <br>
    
    ```bash
-   git clone https://github.com/Pust-Lang/pustIDE.git
+   git clone https://github.com/Year-Lang/yearIDE.git
    ```
 
   <br>
   clone repo:
   
    ```bash
-   git clone https://github.com/Pust-Lang/Pust
+   git clone https://github.com/Year-Lang/year
    ```
    
    
    <br><br>
 3. Run the files <br>
-   Run and open the file named 'main.py', you'll be seeing "ps.fn("main", """"""). In between the """""" is where you code, you may also not use Mainspace, but you need to add ps. , like this: ps.pln("Hello World!") <br>
-   To learn Pust, go in our website and click on "course" <br>
+   Run and open the file named 'main.py', you'll be seeing "yr.fn("main", """"""). In between the """""" is where you code, you may also not use Mainspace, but you need to add yr. , like this: yr.pln("Hello World!") <br>
+   To learn Year, go in our website and click on "course" <br>
 <hr>
 
 **Supports**: Linux, Windows, Mac.
