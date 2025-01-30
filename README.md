@@ -1,31 +1,29 @@
 <p align="center">
   
-![Banner](https://github.com/user-attachments/assets/0307127d-7d0f-41a3-8f4f-d38bde5d1117)
-
-
+![Banner](https://github.com/user-attachments/assets/0d004642-4d4b-44b5-a33a-c6a5abc46f46)
 
 
 
 </p>
 <h4 align="center">
   
-  [Website](https://year-lang.github.io/web/)
+  [Website](https://pust-lang.github.io/web/)
   
 </h4>
 <hr>
 <p align="center">
-  <b>Year</b> – A Rust-inspired programming language <br> 
+  <b>Pust</b> – A Rust-inspired programming language <br> 
   This program is in alpha. The full code is still under development.
 </p>
 
 
 <br>
 
-## What is Year?
+## What is PiStud?
 
-Year is a new low-level programming language inspired by Rust.  
+PiStud is a new low-level programming language inspired by Rust.  
 Our goal is to offer powerful, safe, and concurrent programming capabilities with an easier learning curve.  
-Think **Rust**, but with **Year** simplicity and elegance!
+Think **Rust**, but with **PiStud** simplicity and elegance!
 
 ---
 
@@ -50,21 +48,21 @@ Clone the repository: <br> <br>
    <br> <br>
    
    ```bash
-   git clone https://github.com/Year-Lang/yearIDE.git
+   git clone https://github.com/PiStud-Lang/pustIDE.git
    ```
 
   <br>
   clone repo:
   
    ```bash
-   git clone https://github.com/Year-Lang/year
+   git clone https://github.com/PiStud-Lang/Pust
    ```
    
    
    <br><br>
 3. Run the files <br>
-   Run and open the file named 'main.py', you'll be seeing "yr.fn("main", """"""). In between the """""" is where you code, you may also not use Mainspace, but you need to add yr. , like this: yr.pln("Hello World!") <br>
-   To learn Year, go in our website and click on "course" <br>
+   Run and open the file named 'main.py', you'll be seeing "ps.fn("main", """"""). In between the """""" is where you code, you may also not use Mainspace, but you need to add ps. , like this: ps.pln("Hello World!") <br>
+   To learn Pust, go in our website and click on "course" <br>
 <hr>
 
 **Supports**: Linux, Windows, Mac.
