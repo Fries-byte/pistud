@@ -48,14 +48,14 @@ Clone the repository: <br> <br>
    <br> <br>
    
    ```bash
-   git clone https://github.com/PiStud-Lang/pustIDE.git
+   https://github.com/PiStud-Lang/main.pistud
    ```
 
   <br>
   clone repo:
   
    ```bash
-   git clone https://github.com/PiStud-Lang/Pust
+   git clone https://github.com/PiStud-Lang/pistud
    ```
    
    
