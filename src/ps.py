@@ -49,7 +49,7 @@ def wl(wname):  # Define window loop
     else:
         print(f"Error: Window '{wname}' not found.")
 
-def cv(var, val):  # Define create variable
+def let(var, val):  # Define create variable
     if isinstance(val, Tk):
         windows[var] = val
     else:
@@ -172,7 +172,7 @@ def loop(code, n): # Define loop
             execute_main(code) 
             
 class PustInterpreter:
-    cv = staticmethod(cv)
+    let = staticmethod(let)
     wo = staticmethod(wo)
     pln = staticmethod(pln)
     iln = staticmethod(iln)
