@@ -17,6 +17,10 @@ variables = {}
 functions = {}
 windows = {}
 buttons = {}
+custom_keys = {}
+
+def newkey(key, code):  # Define newkey
+    custom_keys[key] = code 
 
 def py(execpython): # Define executing python code
     exec(execpython) # Run python code
@@ -139,6 +143,39 @@ def bc(name, code):  # Define button click
             return
     print(f"Error: Button '{name}' not found.")
 
+def cb(windowname, geo, size, name):  # Define create button
+    if windowname in windows:
+        window = windows[windowname]
+        x, y = map(int, geo.split(','))  # Extract x and y coordinates
+        width, height = map(int, size.split(','))  # Extract width and height
+        button = Button(window, text=name)
+        button.place(x=x, y=y, width=width, height=height)
+        windows[f"{windowname}_{name}_button"] = button  # Store button for reference
+    else:
+        print(f"Error: Window '{windowname}' not found.")
+
+def bc(name, code):  # Define button click
+    # Find the button in the stored windows
+    for key, button in windows.items():
+        if key.endswith(f"_{name}_button"):  # Match button by name
+            # Bind the click event to execute the provided code
+            def on_click():
+                for line in code:
+                    line = line.strip()
+                    if line.startswith("fn("):  # Ensure only functions are executed
+                        func_name = line[3:-1]  # Extract function name
+                        if func_name in functions:
+                            for func_line in functions[func_name]:
+                                exec(func_line.strip(), globals())
+                        else:
+                            print(f"Error: Function '{func_name}' not found.")
+                    else:
+                        print(f"Error: Invalid code '{line}'.")
+            button.config(command=on_click)  # Bind the click handler to the button
+            print(f"Click event bound to button '{name}'.")
+            return
+    print(f"Error: Button '{name}' not found.")
+
 def execute_main(code):  # Execute mainspace code
     for line in code.splitlines():
         stripped_line = line.strip()
@@ -147,7 +184,10 @@ def execute_main(code):  # Execute mainspace code
         if stripped_line == "":
             continue
         try:
-            exec(stripped_line, globals())
+            if stripped_line in custom_keys:  # Check if the line matches a custom key
+                exec(custom_keys[stripped_line])  # Execute the associated code
+            else:
+                exec(stripped_line, globals())  # Otherwise, execute as regular code
         except Exception as e:
             print(f"Error in mainspace: {e}")
 
@@ -181,5 +221,6 @@ class PustInterpreter:
     mb = staticmethod(mb)
     wl = staticmethod(wl)
     cb = staticmethod(cb)
+    keyword = staticmethod(keyword)
 
 ps = PustInterpreter()
