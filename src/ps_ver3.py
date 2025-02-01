@@ -2,9 +2,9 @@ import webbrowser  # Importing webbrowser to open sites
 from tkinter import messagebox # Importing messagebox to give info, warning, error
 
 # =--=--=--=--=--=--=--=--=--=--=--=--=
-# Pust's Interpreter source
+# PiStud's Interpreter source
 # Created by Pust-Lang (GitHub)
-# and written by Fries-byte (GitHub)
+# and written by PiStud-byte (GitHub)
 # Learn more on our website or README.md
 #
 # 2025 - presents | The Programming Language Pust
