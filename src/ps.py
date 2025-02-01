@@ -67,14 +67,7 @@ def mb(type, title, message): # Define message box
         print(f"Error: '{method_name}' is not a valid messagebox type.")
 
 
-def pln(*args):  # Define print
-    output = []
-    for arg in args:
-        if arg in variables:
-            output.append(str(variables[arg]))
-        else:
-            output.append(str(arg))
-    print(" ".join(output))
+    print(text)
 
 def iln(prompt):  # Define input line
     return input(prompt)
