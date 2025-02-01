@@ -1,5 +1,5 @@
 # PiStud's Interpreter source
-# Created by Pust-Lang (GitHub)
+# Created by PiStud-Lang (GitHub)
 # Learn more on our website or README.md
 # =--=--=--=--=--=--=
 
