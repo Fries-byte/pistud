@@ -1,4 +1,4 @@
-# Pust's Interpreter source
+# PiStud's Interpreter source
 # Created by Pust-Lang (GitHub)
 # Learn more on our website or README.md
 # =--=--=--=--=--=--=
@@ -25,11 +25,6 @@ def iln(prompt):  # Define input
 # Example usage: user_input = iln("Enter something: ")
 
 def fn(name=None, code=None):  # Define and run functions
-    """
-    If `name` and `code` are provided, define the function.
-    If `name` is provided but `code` is None, run the function.
-    Automatically run the 'main' function if defined.
-    """
     if name and code:
         # Define the function
         functions[name] = code
