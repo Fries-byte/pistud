@@ -3,12 +3,12 @@ from tkinter import messagebox  # Importing messagebox to give info, warning, er
 from tkinter import *  # Importing tkinter for software builder
 
 # =--=--=--=--=--=--=--=--=--=--=--=--=
-# Pust's Interpreter source
-# Created by Pust-Lang (GitHub)
+# PiStud's Interpreter source
+# Created by PiStud-Lang (GitHub)
 # and written by Fries-byte (GitHub)
 # Learn more on our website or README.md
 #
-# 2025 - presents | The Programming Language Pust
+# 2025 - presents | The Programming Language PiStud
 # =--=--=--=--=--=--=--=--=--=--=--=--=
 
 variables = {}
