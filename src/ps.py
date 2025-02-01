@@ -1,10 +1,10 @@
 # =--=--=--=--=--=--=--=--=--=--=--=--=
-# Year's Interpreter source
-# Created by Year-Lang (GitHub)
+# PiStud's Interpreter source
+# Created by PiStud-Lang (GitHub)
 # and written by Fries-byte (GitHub)
 # Learn more on our website or README.md
 #
-# 2025 - presents | The Programming Language Pust
+# 2025 - presents | The Programming Language PiStud
 # =--=--=--=--=--=--=--=--=--=--=--=--=
 
 import webbrowser  # Importing webbrowser to open sites
@@ -175,4 +175,4 @@ class PustInterpreter:
     wl = staticmethod(wl)
     cb = staticmethod(cb)
 
-yr = PustInterpreter()
+ps = PustInterpreter()
