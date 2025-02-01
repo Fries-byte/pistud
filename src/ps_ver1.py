@@ -1,3 +1,6 @@
+# NOTE: Older version might no work since the package manager has been updated multiple times.
+# And there can also be unsupported packages
+
 # PiStud's Interpreter source
 # Created by PiStud-Lang (GitHub)
 # Learn more on our website or README.md
