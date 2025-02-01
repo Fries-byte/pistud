@@ -45,14 +45,3 @@ def fn(name=None, code=None):  # Define and run functions
                 exec(line)
         else:
             print(f"Function '{name}' is not defined.")
-
-# Example usage of the interpreter:
-if __name__ == "__main__":
-    # Define and run the main function
-    fn("main", [
-        "pln('Welcome to Pust Interpreter!')",
-        "cv('greeting', 'Hello from the main function!')",
-        "pln('greeting')",
-        "fn('say_hi', [\"pln('Hi from inside another function!')\"])",  # Add a nested function
-        "fn('say_hi')"  # Run the nested function
-    ])
