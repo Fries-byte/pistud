@@ -13,7 +13,7 @@
 </h4>
 <hr>
 <p align="center">
-  <b>Pust</b> – A Rust-inspired programming language <br> 
+  <b>PiStud</b> – A Rust-inspired programming language <br> 
   This program is in alpha. The full code is still under development.
 </p>
 
@@ -30,8 +30,8 @@ Think **Rust**, but with **PiStud** simplicity and elegance!
 
 ## Features (Work in Progress)
 
-- **Easy to use**: Pust is easy to use, like, pln, iln, fn, wo, if_stmt and cv!
-- **Usefull**: Pust is written it so that its easy to code for bigginers, it might also be usefull
+- **Easy to use**: PiStud is easy to use, like, pln, iln, fn, wo, if_stmt and cv!
+- **Usefull**: PiStud is written it so that its easy to code for bigginers, it might also be usefull
 - **Software**: Building software is slowly being implemented, and you can create windows and message boxes
 
 ---
@@ -63,7 +63,7 @@ Clone the repository: <br> <br>
    <br><br>
 3. Run the files <br>
    Run and open the file named 'main.py', you'll be seeing "ps.fn("main", """"""). In between the """""" is where you code, you may also not use Mainspace, but you need to add ps. , like this: ps.pln("Hello World!") <br>
-   To learn Pust, go in our website and click on "course" <br>
+   To learn PiStud, go in our website and click on "course" <br>
 <hr>
 
 **Supports**: Linux, Windows, Mac.
