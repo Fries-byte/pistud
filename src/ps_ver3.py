@@ -3,11 +3,11 @@ from tkinter import messagebox # Importing messagebox to give info, warning, err
 
 # =--=--=--=--=--=--=--=--=--=--=--=--=
 # PiStud's Interpreter source
-# Created by Pust-Lang (GitHub)
-# and written by PiStud-byte (GitHub)
+# Created by PiStud-Lang (GitHub)
+# and written by Fries-byte (GitHub)
 # Learn more on our website or README.md
 #
-# 2025 - presents | The Programming Language Pust
+# 2025 - presents | The Programming Language PiStud
 # =--=--=--=--=--=--=--=--=--=--=--=--=
 
 variables = {}  # Dictionary to store variables
