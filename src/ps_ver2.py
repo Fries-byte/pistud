@@ -1,8 +1,8 @@
 import webbrowser  # Importing webbrowser to open sites
 
 # =--=--=--=--=--=--=--=--=--=--=--=--=
-# Pust's Interpreter source
-# Created by Pust-Lang (GitHub)
+# PiStud's Interpreter source
+# Created by PiStud-Lang (GitHub)
 # and written by Fries-byte (GitHub)
 # Learn more on our website or README.md
 # =--=--=--=--=--=--=--=--=--=--=--=--=
