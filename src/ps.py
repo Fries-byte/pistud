@@ -221,6 +221,6 @@ class PustInterpreter:
     mb = staticmethod(mb)
     wl = staticmethod(wl)
     cb = staticmethod(cb)
-    keyword = staticmethod(keyword)
+    define = staticmethod(define)
 
 ps = PustInterpreter()
