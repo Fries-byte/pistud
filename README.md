@@ -67,3 +67,4 @@ Clone the repository: <br> <br>
 <hr>
 
 **Supports**: Linux, Windows, Mac.
+**Building to support**: Chromebook and others
