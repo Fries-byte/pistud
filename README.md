@@ -40,7 +40,7 @@ Think **Rust**, but with **PiStud** simplicity and elegance!
 **Importing Functions**: To import a function, use python's import system. ```import file``` thats it, run the function with ```fn("funcname")``` <br> <br>
 
 ## Getting Started
-Download [python](https://python.org) before downloading! <br>
+Download [python](https://python.org) before getting PiStud! <br>
 Clone with git: <br>
 
 Clone the repository: <br> <br>
