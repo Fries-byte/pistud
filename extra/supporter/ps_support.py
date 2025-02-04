@@ -18,15 +18,21 @@ variables = {}
 functions = {}
 custom_keys = {}
 
-def newkey(key, code): # Define newkey
-    custom_keys[key] = code 
+def newkey(key, code):
+    custom_keys[key] = code  # Store the custom key and its associated code
 
-def rekey(code): # Define reset key
+def redokey(code):
     for key, value in custom_keys.items():
         code = code.replace(key, value)
     return code
 
-def py(execpython): # Define executing python code
+def upvar(var, val):
+    if var in variables:
+        variables[var] = val
+    else:
+        print(f"Error: Variable '{var}' not found.")
+
+def py(execpython):
     try:
         compiled_code = compile(execpython, '<string>', 'exec')
         exec(compiled_code, globals(), locals())
@@ -35,14 +41,8 @@ def py(execpython): # Define executing python code
     except Exception as e:
         print(f"Error executing Python code: {e}")
 
-def let(var, val): # Define letting a variabel be created
+def let(var, val):
     variables[var] = val
-
-def upvar(var, val): # Define update variable
-    if var in variables:
-        variables[var] = val
-    else:
-        print(f"Error: Variable '{var}' not found.")
 
 def pln(text, *args):
     text = text.replace("*n", "\n").replace("*t", "\t")
@@ -52,7 +52,7 @@ def pln(text, *args):
         text = text.replace(f"{{{i}}}", str(arg))
     print(text)
 
-def iln(prompt): # Define input
+def iln(prompt):
     return input(prompt)
 
 def if_stmt(var, value, code_if, code_else=None):
@@ -83,7 +83,7 @@ def if_stmt(var, value, code_if, code_else=None):
 
 def execute_main(code):
     # Replace custom keys in the code before execution
-    code = replace_custom_keys(code)
+    code = redokey(code)
     for line in code.splitlines():
         stripped = line.split("//")[0].strip()
         if stripped:
