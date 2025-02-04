@@ -49,7 +49,7 @@ Clone the repository: <br> <br>
    <br> <br>
    
    ```bash
-   git clone https://github.com/PiStud-Lang/main.pistud
+   git clone https://github.com/PiStud-Lang/PI-ide
    ```
 
   <br>
