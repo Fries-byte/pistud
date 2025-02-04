@@ -2,6 +2,8 @@ import urllib.request
 if name == "versions":
   if version == 8.5:
     exec(urllib.request.urlopen("https://raw.githubusercontent.com/PiStud-Lang/PiStud/refs/heads/main/src/ps.py").read().decode())
+  elif version == 8.5:
+    exec(urllib.request.urlopen("https://raw.githubusercontent.com/PiStud-Lang/pistud/refs/heads/main/src/ps_ver8.py").read().decode())
   elif version == 7:
     exec(urllib.request.urlopen("https://raw.githubusercontent.com/PiStud-Lang/PiStud/refs/heads/main/src/ps_ver7.py").read().decode())
   elif version == 6:
@@ -17,6 +19,6 @@ if name == "versions":
   elif version == 1:
     exec(urllib.request.urlopen("https://raw.githubusercontent.com/PiStud-Lang/PiStud/refs/heads/main/src/ps_ver1.py").read().decode())
     
-if name == "opack":
+if name == "geodate":
     if version == 1:
       exec(urllib.request.urlopen("https://raw.githubusercontent.com/PiStud-Lang/PiStud/refs/heads/main/src/ps_ver1.py").read().decode())
