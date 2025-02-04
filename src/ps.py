@@ -177,9 +177,14 @@ def loop(code, n):  # Define loop
         for _ in range(n):
             execute_main(code)
 
-def math(expression):  # Define math function
+def math(expression):
     try:
-        # Evaluate the mathematical expression and return the result
+        # Replace placeholders like {first}, {op}, {sec} with their values
+        for var_name, var_value in variables.items():
+            placeholder = "{" + var_name + "}"
+            if placeholder in expression:
+                expression = expression.replace(placeholder, str(var_value))
+        # Evaluate the expression and return the result
         return eval(expression, {}, variables)
     except Exception as e:
         print(f"Error evaluating math expression: {e}")
