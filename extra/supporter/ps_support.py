@@ -21,12 +21,12 @@ custom_keys = {}
 def newkey(key, code): # Define newkey
     custom_keys[key] = code 
 
-def replacekeys(code): # Define 
+def rekey(code): # Define reset key
     for key, value in custom_keys.items():
         code = code.replace(key, value)
     return code
 
-def py(execpython):
+def py(execpython): # Define executing python code
     try:
         compiled_code = compile(execpython, '<string>', 'exec')
         exec(compiled_code, globals(), locals())
@@ -35,8 +35,14 @@ def py(execpython):
     except Exception as e:
         print(f"Error executing Python code: {e}")
 
-def let(var, val):
+def let(var, val): # Define letting a variabel be created
     variables[var] = val
+
+def upvar(var, val): # Define update variable
+    if var in variables:
+        variables[var] = val
+    else:
+        print(f"Error: Variable '{var}' not found.")
 
 def pln(text, *args):
     text = text.replace("*n", "\n").replace("*t", "\t")
@@ -46,7 +52,7 @@ def pln(text, *args):
         text = text.replace(f"{{{i}}}", str(arg))
     print(text)
 
-def iln(prompt):
+def iln(prompt): # Define input
     return input(prompt)
 
 def if_stmt(var, value, code_if, code_else=None):
