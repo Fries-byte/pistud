@@ -13,8 +13,8 @@
 </h4>
 <hr>
 <p align="center">
-  <b>PiStud</b> – A Rust-inspired programming language <br> 
-  This program is in alpha. The full code is still under development.
+  <b>PiStud</b> – A easy to use programming language <br> 
+  This language is still under development and is not bug free.
 </p>
 
 
