@@ -133,6 +133,15 @@ def math(expression):
         print(f"Error evaluating math expression: {e}")
         return None
 
+def catch(code, error_handler): # Define catch
+    try:
+        exec(code, globals())
+    except Exception as e:
+        error_message = str(e)
+        for line in error_handler:
+            line = line.replace("{!error!}", "Error Found").replace("{!reason!}", error_message)
+            exec(line, globals())
+
 class PustInterpreter:
     let = staticmethod(let)
     pln = staticmethod(pln)
@@ -140,5 +149,6 @@ class PustInterpreter:
     fn = staticmethod(fn)
     if_stmt = staticmethod(if_stmt)
     newkey = staticmethod(newkey)
+    catch = staticmethod(catch)
 
 ps = PustInterpreter()
