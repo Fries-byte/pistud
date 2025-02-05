@@ -170,14 +170,14 @@ def fn(name=None, code=None):  # Define functions
         print(f"Function '{name}' not found.")
         
 def loop(code, n):  # Define loop
-    if n == 0:
+    if n == 0: # Loop
         while True:
             execute_main(code)
-    else:
+    else: # Looping the amount added
         for _ in range(n):
             execute_main(code)
 
-def math(expression):
+def math(expression):  # Define math
     try:
         # Replace placeholders like {first}, {op}, {sec} with their values
         for var_name, var_value in variables.items():
@@ -189,6 +189,16 @@ def math(expression):
     except Exception as e:
         print(f"Error evaluating math expression: {e}")
         return None
+
+def catch(code, error_handler): # Define catch
+    try:
+        exec(code, globals())
+    except Exception as e:
+        error_message = str(e)
+        for line in error_handler:
+            line = line.replace("{!error!}", "Error Found").replace("{!reason!}", error_message)
+            exec(line, globals())
+
             
 class PustInterpreter:
     let = staticmethod(let)
@@ -202,5 +212,6 @@ class PustInterpreter:
     cb = staticmethod(cb)
     newkey = staticmethod(newkey)
     math = staticmethod(math)
+    catch = staticmethod(catch)
 
 ps = PustInterpreter()
