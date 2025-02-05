@@ -66,5 +66,4 @@ Clone the repository: <br> <br>
    To learn PiStud, go in our website and click on "course" <br>
 <hr>
 
-**Supports**: Linux, Windows, Mac.
-**Building to support**: Chromebook and others
+**Supports**: Linux, Windows, Mac, Chromebook and others. *(A python interpreter/compiler required)*
