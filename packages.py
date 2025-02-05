@@ -19,6 +19,6 @@ if name == "versions":
   elif version == 1:
     exec(urllib.request.urlopen("https://raw.githubusercontent.com/PiStud-Lang/PiStud/refs/heads/main/src/ps_ver1.py").read().decode())
     
-if name == "geodate":
+if name == "support":
     if version == 1:
-      exec(urllib.request.urlopen("https://raw.githubusercontent.com/PiStud-Lang/PiStud/refs/heads/main/src/ps_ver1.py").read().decode())
+      exec(urllib.request.urlopen("https://raw.githubusercontent.com/PiStud-Lang/pistud/refs/heads/main/extra/supporter/ps_support.py").read().decode())
