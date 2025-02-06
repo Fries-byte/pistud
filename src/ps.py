@@ -11,7 +11,6 @@ import webbrowser  # Importing webbrowser to open sites
 from tkinter import messagebox  # Importing messagebox to give info, warning, error
 from tkinter import *  # Importing tkinter for software builder
 import urllib.request  # Importing urllib to import packages
-import os  # Importing OS to execute code on the machine
 import subprocess # Same here
 
 variables = {}
