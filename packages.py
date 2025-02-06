@@ -21,4 +21,4 @@ if name == "versions":
     
 if name == "support":
     if version == 1:
-      exec(urllib.request.urlopen("https://raw.githubusercontent.com/PiStud-Lang/pistud/refs/heads/main/extra/supporter/ps_support.py").read().decode())
+      exec(urllib.request.urlopen("https://raw.githubusercontent.com/Fries-byte/pistud/refs/heads/main/extra/supporter/ps_support.py").read().decode())
