@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The PiStud Programming Language</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --text-color: #ffffff;
+            --container-bg: #1e1e1e;
+            --button-bg: #007BFF;
+            --button-hover-bg: #0056b3;
+            --footer-color: #888;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            background: var(--container-bg);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .logo {
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        .nav {
+            margin-bottom: 20px;
+        }
+
+        .nav button {
+            margin: 0 10px;
+            padding: 10px 15px;
+            font-size: 1.1em;
+            color: var(--text-color);
+            background-color: var(--button-bg);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav button:hover {
+            background-color: var(--button-hover-bg);
+        }
+
+        .sections {
+            margin-top: 20px;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: var(--footer-color);
+        }
+
+        a {
+            color: #4da6ff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+    <script>
+        function showSection(section) {
+            const content = document.getElementById('content');
+
+            switch(section) {
+                case 'github':
+                    content.innerHTML = `
+                        <strong>GitHub</strong>
+                        <p>Find the source code and contribute to the PiStud project on our <a href='https://github.com/pistud-lang/pistud'>GitHub repository</a>.<br><br></p>
+                    `;
+                    break;
+                case 'course':
+                    content.innerHTML = `
+                        <strong>Course</strong>
+                        <p>Learn more about PiStud through the <a href="course.html">PiStud course</a>.<br><br></p>
+                    `;
+                    break;
+                case 'update':
+                    content.innerHTML = `
+                        <strong>Update Log</strong>
+                        <p>Added Loops, read README.md for more info<br><br></p>
+                    `;
+                    break;
+                case 'readme':
+                    content.innerHTML = `
+                        <strong>README</strong>
+                        <p>Learn more about PiStud, its features, and usage in the <a href='https://github.com/year-lang/pust#readme'>README file</a>.<br><br></p>
+                    `;
+                    break;
+                case 'license':
+                    content.innerHTML = `
+                        <strong>License</strong>
+                        <p>License Summary - Permissions: You are free to use, modify, and distribute the code, including for commercial purposes. Restrictions: You may not create works that confuse or mislead others by replicating or misrepresenting the project.<br><br>View the full license <a href='https://github.com/pust-lang/pust/blob/main/LICENSE'>here</a>.<br><br></p>
+                    `;
+                    break;
+                case 'about':
+                    content.innerHTML = `
+                        <strong>About</strong>
+                        <p>PiStud is a programming language inspired by Rust, focusing on simplicity and usability.<br><br></p>
+                    `;
+                    break;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="l.png" alt="PiStud Logo">
+        </div>
+        <h1>Welcome to PiStud</h1>
+        <p>A Rust-Inspired Programming Language</p>
+
+        <div class="nav">
+            <button onclick="showSection('github')">GitHub</button>
+            <button onclick="showSection('course')">Course</button>
+            <button onclick="showSection('update')">Update Log</button>
+            <button onclick="showSection('readme')">README</button>
+            <button onclick="showSection('license')">License</button>
+            <button onclick="showSection('about')">About</button>
+        </div>
+
+        <div class="sections" id="content">
+            <strong>Welcome!</strong>
+            <p>Select a section to learn more about PiStud.</p>
+        </div>
+
+        <footer>
+            &copy; 2025 - present, The PiStud Language | Designed for usefulness and simplicity.<br>
+        </footer>
+    </div>
+</body>
+</html>
