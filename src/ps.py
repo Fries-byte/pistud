@@ -11,7 +11,7 @@ import webbrowser  # Importing webbrowser to open sites
 from tkinter import messagebox  # Importing messagebox to give info, warning, error
 from tkinter import *  # Importing tkinter for software builder
 import urllib.request  # Importing urllib to import packages
-import subprocess # Same here
+import os # Importing os for bash
 
 variables = {}
 functions = {}
@@ -25,10 +25,8 @@ def newkey(key, code):  # Define newkey
 def py(execpython):  # Define executing python code
     exec(execpython)  # Run python code
 
-def os(executeos): # Define executing bash
-    result = subprocess.run(executeos, shell=True, capture_output=True, text=True)
-    print(result.stdout)
-    print(result.stderr)
+def bash(executeos): # Define executing bash
+    system.os(executeos)
     
 def load(packport):  # Define package loader
     exec(urllib.request.urlopen(packport).read().decode())  # Gets and decodes the package
