@@ -7,20 +7,17 @@ Pistud is not only easy to use, you can also build fun stuff like an app/softwar
 You also must know that the error log might be bad and so to fix errors are quite hard which what sucks about PiStud
 
 ## Getting started
-To get started to program PiStud, go in [PiStud's course](https://pistud-lang.github.io/web/course.html) to learn it first <br>
+To get started to program PiStud, go in [PiStud's course](https://fries-byte.github.io/pistud/course.html) to learn it first <br>
 after you're done with learning it, go in your terminal and use 
 ```bash
-  git clone https://github.com/PiStud-Lang/Pi-IDE
+  git clone https://github.com/Fries-byte/pistud/ide
 ```
 and you will see the src tab where your main file will be, you can ignore the package.py which what makes you able to code with PiStud <br>
-you can also create more files but make sure that you import the package.py, and to import files (like in python) use python's import system, ```import maintwo.py```.
+you can also create more files but make sure that you import the package.py, and to import files (like in python) use python's import system, ```import maintwo.py```. <br>
 
-## Info
-I am the original creator of PiStud. <br>
-This version is outdated, you can get the newest version at [The official PiStud repo](https://github.com/pistud-lang/pistud). <br> 
 please read the License and Security if you want the source and all <br> 
 
-Thank you for using PiStud!
+Thank you for using PiStud! <br>
 
 ## License
 When uploading your own fan-made version of PiStud make sure that its not the same as ours, <br>
