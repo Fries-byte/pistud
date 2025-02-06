@@ -12,6 +12,7 @@ from tkinter import messagebox  # Importing messagebox to give info, warning, er
 from tkinter import *  # Importing tkinter for software builder
 import urllib.request  # Importing urllib to import packages
 import os  # Importing OS to execute code on the machine
+import subprocess # Same here
 
 variables = {}
 functions = {}
@@ -25,8 +26,10 @@ def newkey(key, code):  # Define newkey
 def py(execpython):  # Define executing python code
     exec(execpython)  # Run python code
 
-def os(executeos):  # Define operating system
-    os.system(executeos)  # Executes bash code on the machine
+def os(executeos): # Define executing bash
+    result = subprocess.run(executeos, shell=True, capture_output=True, text=True)
+    print(result.stdout)
+    print(result.stderr)
     
 def load(packport):  # Define package loader
     exec(urllib.request.urlopen(packport).read().decode())  # Gets and decodes the package
