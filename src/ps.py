@@ -26,7 +26,8 @@ def py(execpython):  # Define executing python code
     exec(execpython)  # Run python code
 
 def bash(executeos): # Define executing bash
-    system.os(executeos)
+    output = os.popen(executeos).read()
+    print(output)
     
 def load(packport):  # Define package loader
     exec(urllib.request.urlopen(packport).read().decode())  # Gets and decodes the package
