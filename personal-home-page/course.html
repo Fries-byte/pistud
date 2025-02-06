@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The PiStud Programming Language</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --text-color: #ffffff;
+            --container-bg: #1e1e1e;
+            --button-bg: #007BFF;
+            --button-hover-bg: #0056b3;
+            --footer-color: #888;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            text-align: center;
+            background: var(--container-bg);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .logo {
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .nav {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .nav button {
+            margin: 5px;
+            padding: 10px 15px;
+            font-size: 1em;
+            color: var(--text-color);
+            background-color: var(--button-bg);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .nav button:hover {
+            background-color: var(--button-hover-bg);
+        }
+
+        .sections {
+            margin-top: 20px;
+            text-align: left;
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: var(--footer-color);
+        }
+
+        a {
+            color: #4da6ff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        // Function to dynamically load content based on selected section
+        function showSection(section) {
+            const content = document.getElementById('content');
+
+            // Content for each section
+            switch(section) {
+                case 'Mainspace':
+                    content.innerHTML = `
+                        <h2>Mainspace</h2>
+                        <p>Mainspace is where you can write your code without the need for the <code>ps</code> prefix. For example: <code>ps.fn("main", """pln("my coding space")"""</code>. Functions cannot be created here, but they can be called.</p>
+                    `;
+                    break;
+                case 'Print':
+                    content.innerHTML = `
+                        <h2>Print</h2>
+                        <p>To print output, use <code>pln("message")</code>. If you are not in the mainspace, use <code>ps.pln("message")</code>, like the ps. every line.</p>
+                    `;
+                    break;
+                case 'Input':
+                    content.innerHTML = `
+                        <h2>Input</h2>
+                        <p>To get user input, use <code>iln("prompt")</code> or <code>ps.iln("prompt")</code> if you're not in the mainspace. To store input in a variable, use: <code>cv("variable", iln("Your input: "))</code>.</p>
+                    `;
+                    break;
+                case 'If Statement':
+                    content.innerHTML = `
+                        <h2>If Statement</h2>
+                        <p>To use an if statement, use the format: <code>ps.if_stmt("variable", "value", ['pln("True!")'], ['pln("else")'])</code>. The else part is optional.</p>
+                    `;
+                    break;
+                case 'Button':
+                    content.innerHTML = `
+                        <h2>Button</h2>
+                        <p>To create a button, use: <code>cb("parent", "position", "size", "name")</code>. You can assign click events after creating the button.</p>
+                    `;
+                    break;
+                case 'Button Click':
+                    content.innerHTML = `
+                        <h2>Button Click</h2>
+                        <p>To register a button click, use <code>bc("button name", ["fn(FunctionName)"])</code>. This will trigger the function when the button is clicked.</p>
+                    `;
+                    break;
+                case 'Functions':
+                    content.innerHTML = `
+                        <h2>Functions</h2>
+                        <p>Functions in Pust can sometimes face limitations in Mainspace. In such cases, use <code>ps.fn("FunctionName", """code with as many lines as you want""")</code> to define the function outside of Mainspace.</p>
+                    `;
+                    break;
+                case 'Py':
+                    content.innerHTML = `
+                        <h2>Py</h2>
+                        <p>To run Python code in PiStud, use the format: <code>py("python code")</code>.</p>
+                    `;
+                    break;
+                case 'NewKey':
+                    content.innerHTML = `
+                        <h2>NewKey</h2>
+                        <p>A newkey is besicly creating a "function" or a keyword in a function, but you must know the supported version of pistud has a diffrent way of using newkey, like this: Normal, <code>newkey("callhello", "pln('Hello World!')")</code> Supported, <code>ps.newkey("callhello", "pln('Hello World!')")</code>, yes you need to do it outside of functions</p>
+                    `;
+                    break;
+                case 'Os':
+                    content.innerHTML = `
+                        <h2>Os</h2>
+                        <p>To execute bash commands, use <code>os("bash command")</code> within your code.</p>
+                    `;
+                    break;
+                case 'Load':
+                    content.innerHTML = `
+                        <h2>Load</h2>
+                        <p>Use <code>load("raw link")</code> to load any raw link, such as from a file or external resource.</p>
+                    `;
+                    break;
+                case 'Loops':
+                    content.innerHTML = `
+                        <h2>Loops</h2>
+                        <p>To create a loop that runs indefinitely, use: <code>loop("code to execute", 0)</code>, 0 means loop and other numbers will execute the code as many times as you want: <code>loop("Hello 7 times!", 7)</code> .</p>
+                    `;
+                    break;
+                case 'Variables':
+                    content.innerHTML = `
+                        <h2>Variables</h2>
+                        <p>To create a variable, use: <code>let("VariableName", "Value")</code>. You can then use the variable in your code, such as in print statements: <code>pln("Variable name: {VariableName}, thats the name", "VariableName")</code>.</p>
+                    `;
+                    break;
+                case 'Message Box':
+                    content.innerHTML = `
+                        <h2>Message Box</h2>
+                        <p>To display a message box, use: <code>ps.mb("type", "title", "message")</code>. Available types include info, warning, and error.</p>
+                    `;
+                    break;
+                case 'Window':
+                    content.innerHTML = `
+                        <h2>Window</h2>
+                        <p>To create a window, use <code>cv("windowName", cw("WindowTitle", "400x300"))</code> and show it with <code>wl("windowName")</code>.</p>
+                    `;
+                    break;
+                case 'Math':
+                    content.innerHTML = `
+                        <h2>Math</h2>
+                        <p>Math, as it says "math" is where you can do math, like 9 + 10, to use Math do <code>math("1 + 1")</code> and to print it, do <code>let("result", math("1+1")) (new line) pln("{result}")</code> it also works with inputs too! Just save the input with let() and then use {var}!.</p>
+                    `;
+                    break;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="l.png" alt="Year Logo">
+        </div>
+        <h1>Welcome to PiStud</h1>
+        <p>A Rust-Inspired Programming Language</p>
+
+        <div class="nav">
+            <button onclick="showSection('Mainspace')">Mainspace</button>
+            <button onclick="showSection('Print')">Print</button>
+            <button onclick="showSection('Input')">Input</button>
+            <button onclick="showSection('If Statement')">If Statement</button>
+            <button onclick="showSection('Button')">Button</button>
+            <button onclick="showSection('Button Click')">Button Click</button>
+            <button onclick="showSection('Functions')">Functions</button>
+            <button onclick="showSection('Py')">Py</button>
+            <button onclick="showSection('Os')">Os</button>
+            <button onclick="showSection('Load')">Load</button>
+            <button onclick="showSection('Loops')">Loops</button>
+            <button onclick="showSection('Variables')">Variables</button>
+            <button onclick="showSection('Message Box')">Message Box</button>
+            <button onclick="showSection('Window')">Window</button>
+            <button onclick="showSection('NewKey')">NewKey</button>
+            <button onclick="showSection('Math')">Math</button>
+        </div>
+
+        <div class="sections" id="content">
+            <strong>Welcome!</strong>
+            <p>Select a section to learn more about PiStud.</p>
+        </div>
+
+        <footer>
+            &copy; 2025 - present, The PiStud Language | Designed for usefulness and simplicity.<br>
+        </footer>
+    </div>
+</body>
+</html>
