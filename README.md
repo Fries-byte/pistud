@@ -11,7 +11,7 @@ To get started to program PiStud, go in [PiStud's course](https://fries-byte.git
 after you're done with learning it, download [Piargs](https://tinyurl.com/piargs), a package manager for Pistud. <br>
 Or if your in a chomebook or something, you can use the JavaScript version of PiStud,
 ```js
-  await import("https://raw.githubusercontent.com/Fries-byte/pistud/refs/heads/main/extra/js/ps_javascript.js")
+  await import("https://raw.githubusercontent.com/Fries-byte/pistud/refs/heads/main/extra/js/psjavascript.js")
     .then(async (piload) => {
         await piargs.loadPiPackage([]);
         window.piargs = piargs; 
