@@ -156,4 +156,5 @@
         }
     
         const piargs = new PustInterpreter();
+        window.piargs = piargs;
     }
