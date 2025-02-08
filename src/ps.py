@@ -20,7 +20,7 @@ buttons = {}
 custom_keys = {}
 
 def epic(outepic): # Define funny epic
-    print("EPIC, thats how the Fries-Byte calls the language since its easy for everyone (f-b thinks.), and he'd spend his free-time on building this source free program!\nFries-Byte or f-b knew that in the last few years, there are only around 30~ million programmer, no one's intrested or its to hard, so f-b build this to make it easier to program in!\n epic!")
+    print("EPIC, thats how the Fries-Byte calls the language since its easy for everyone (f-b thinks.), and he'd spend his free-time on building this source free program!\nFries-Byte or f-b knew that in the last few years, there are only around 30~ million programmer, no one's intrested or its to hard, so f-b build this to make it easier to program in!\n epic text too, {outepic}!")
 
 def newkey(key, code):  # Define newkey
     custom_keys[key] = code 
