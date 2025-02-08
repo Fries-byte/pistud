@@ -1,6 +1,5 @@
 // Piargs package reader for Pistud
 // for JavaScript
-if(piload == "pistud"){
     function loadPiPackage([]){
         class PustInterpreter {
             constructor() {
@@ -158,4 +157,3 @@ if(piload == "pistud"){
     
         const piargs = new PustInterpreter();
     }
-}
