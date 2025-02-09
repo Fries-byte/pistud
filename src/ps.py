@@ -143,7 +143,14 @@ def bc(name, code):  # Define button click
             return
     print(f"Error: Button '{name}' not found.")
 
-def execute_main(code):  # Execute mainspace code
+def define(name, param, param_type, code):  
+    def func(value):
+        variables[param] = value  # Store the value in variables
+        exec(code.replace(f"{{{param}}}", str(value)), globals())  # Execute code
+    
+    custom_keys[name] = func  # Store function in custom keys
+
+def execute_main(code):  
     for line in code.splitlines():
         stripped_line = line.strip()
         if "//" in stripped_line:
@@ -151,10 +158,17 @@ def execute_main(code):  # Execute mainspace code
         if stripped_line == "":
             continue
         try:
-            if stripped_line in custom_keys:  # Check if the line matches a custom key
-                exec(custom_keys[stripped_line])  # Execute the associated code
+            if stripped_line in custom_keys:  
+                custom_keys[stripped_line]()  # Execute function if defined
             else:
-                exec(stripped_line, globals())  # Otherwise, execute as regular code
+                parts = stripped_line.split(" ", 1)
+                if parts[0] in custom_keys:
+                    if len(parts) > 1:
+                        custom_keys[parts[0]](parts[1])
+                    else:
+                        custom_keys[parts[0]]("")
+                else:
+                    exec(stripped_line, globals())  # Execute regular code
         except Exception as e:
             print(f"Error in mainspace: {e}")
 
@@ -201,7 +215,7 @@ def catch(code, error_handler): # Define catch
             exec(line, globals())
 
 newkey('epic', 'pln("...*nEPIC, thats how the Fries-Byte calls the language since its easy for everyone (f-b thinks.), and hed spend his free-time on building this source free program*nnFries-Byte or f-b knew that in the last few years, there are only around 30~ million programmer, no ones intrested or its to hard, so f-b build this to make it easier to program in!*n epic text too!*n...")') # Define funneh print
-
+            
 class PustInterpreter:
     let = staticmethod(let)
     wo = staticmethod(wo)
