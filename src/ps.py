@@ -54,11 +54,15 @@ def wl(wname):  # Define window loop
     else:
         print(f"Error: Window '{wname}' not found.")
 
-def let(var, val):  # Define create variable
-    if isinstance(val, Tk):
-        windows[var] = val
-    else:
-        variables[var] = val
+def let(var_name, value): # Define letting variable being created
+    if var_name.startswith("{") and var_name.endswith("}"):
+        var_name = var_name[1:-1]
+        if var_name in variables:
+            var_name = variables[var_name]
+    if value.startswith("{") and value.endswith("}"):
+        value = value[1:-1]  # Remove {}
+        if value in variables:
+            value = variables[value]
 
 def wo(url):  # Define web open
     webbrowser.open(url)
