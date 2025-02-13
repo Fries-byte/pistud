@@ -9,7 +9,7 @@ You also must know that the error log might be bad and so to fix errors are quit
 ## Getting started
 To get started to program PiStud, go in [PiStud's course](https://fries-byte.github.io/pistud/course.html) to learn it first <br>
 after you're done with learning it, download [Piargs](https://github.com/Fries-byte/pistud/raw/refs/heads/main/exe/piargs.exe), a package manager for Pistud. <br>
-Or if your in a chomebook or something, download the <a href="https://raw.githubusercontent.com/Fries-byte/pistud/main/extra/js/psjavascript.js" download="psjavascript.js">javascript version of Pistud</a> and run this on your browser by ctrl+shift+i,
+Or if your in a chomebook or something, download the [javascript version of Pistud](https://cdn.jsdelivr.net/gh/Fries-byte/pistud@main/extra/js/psjavascript.js) and run this on your browser by ctrl+shift+i,
 ```js
 import("./Downloads/psjavascript.js").then((module) => {
     piargs.loadPiPackage([pistud])
