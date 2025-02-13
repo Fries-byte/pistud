@@ -159,45 +159,32 @@ def define(name, param, param_type, code): # Define define (weird)
     custom_keys[name] = func 
 
 '''
-*  Read and interpret before running:
-'''
-def execute_main(code):  
-    for line in code.splitlines():
-        stripped_line = line.strip()
-        if "//" in stripped_line:
-            stripped_line = stripped_line.split("//", 1)[0].strip()
-        if stripped_line == "":
-            continue
-        try:
-            if stripped_line in custom_keys:  
-                custom_keys[stripped_line]()
-            else:
-                parts = stripped_line.split(" ", 1)
-                if parts[0] in custom_keys:
-                    if len(parts) > 1:
-                        custom_keys[parts[0]](parts[1])
-                    else:
-                        custom_keys[parts[0]]("")
-                else:
-                    exec(stripped_line, globals())
-        except Exception as e:
-            print(f"Error in mainspace: {e}")
-
-'''
 *  Other keywords:
 '''
-def fn(name=None, code=None):  # Define functions
+def fn(name=None, variable=None, code=None):  # Define functions
     if name and code:
         lines = [line.strip() for line in code.strip().splitlines() if line.strip()]
-        functions[name] = lines
+        functions[name] = {"code": lines, "variable": variable}
         if name == "main":
-            execute_main(code)
+            if variable is not None:
+                variables[variable] = None
+            for line in lines:
+                exec(line, globals())
     elif name in functions:
-        for line in functions[name]:
-            exec(line.strip(), globals())
+        func = functions[name]
+        if func["variable"] is not None:
+            for line in func["code"]:
+                updated_line = line.replace(f"{{{func['variable']}}}", str(variable))
+                exec(updated_line, globals())
+        else:
+            for line in func["code"]:
+                exec(line, globals())
     else:
         print(f"Function '{name}' not found.")
-        
+
+def slice(code):  # Define slice keyword
+    execute_main(code)
+
 def loop(code, n):  # Define loop
     if n == 0: # Loop
         while True:
@@ -226,7 +213,35 @@ def catch(code, error_handler): # Define catch
             line = line.replace("{!error!}", "Error Found").replace("{!reason!}", error_message)
             exec(line, globals())
 
+# Register 'slice' as a custom keyword
+newkey('slice', 'slice')
+
 newkey('epic', 'pln("...*nEPIC, thats how the Fries-Byte calls the language since its easy for everyone (f-b thinks.), and hed spend his free-time on building this source free program*nnFries-Byte or f-b knew that in the last few years, there are only around 30~ million programmer, no ones intrested or its to hard, so f-b build this to make it easier to program in!*n epic text too!*n...")') # Define funneh print
+
+'''
+*  Read and interpret before running:
+'''
+def execute_main(code):  
+    for line in code.splitlines():
+        stripped_line = line.strip()
+        if "//" in stripped_line:
+            stripped_line = stripped_line.split("//", 1)[0].strip()
+        if stripped_line == "":
+            continue
+        try:
+            if stripped_line in custom_keys:  
+                custom_keys[stripped_line]()
+            else:
+                parts = stripped_line.split(" ", 1)
+                if parts[0] in custom_keys:
+                    if len(parts) > 1:
+                        custom_keys[parts[0]](parts[1])
+                    else:
+                        custom_keys[parts[0]]("")
+                else:
+                    exec(stripped_line, globals())
+        except Exception as e:
+            print(f"Error in mainspace: {e}")
 
 '''
 *  Require ps. before keyword:
@@ -244,6 +259,7 @@ class PustInterpreter:
     newkey = staticmethod(newkey)
     math = staticmethod(math)
     catch = staticmethod(catch)
+    slice = staticmethod(slice)
 
 '''
 *  ps
