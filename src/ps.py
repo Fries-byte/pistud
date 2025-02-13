@@ -1,11 +1,11 @@
-# =--=--=--=--=--=--=--=--=--=--=--=--=
-# PiStud's Interpreter source
-# Created by PiStud-Lang (GitHub)
-# and written by Fries-byte (GitHub)
-# Learn more on our website or README.md
-#
-# 2025 - presents | The Programming Language PiStud
-# =--=--=--=--=--=--=--=--=--=--=--=--=
+'''
+ * PiStud's interpreter source
+ * Created by PiStud-Lang (GitHub)
+ * and written by Fries-byte (GitHub)
+ * Learn more on our website or README.md
+ *
+ * 2025 - presents | The Programming Language PiStud
+'''
 
 import webbrowser  # Importing webbrowser to open sites
 from tkinter import messagebox  # Importing messagebox to give info, warning, error
@@ -13,17 +13,23 @@ from tkinter import *  # Importing tkinter for software builder
 import urllib.request  # Importing urllib to import packages
 import os # Importing os for bash
 
+'''
+*  Storage:
+'''
 variables = {}
 functions = {}
 windows = {}
 buttons = {}
 custom_keys = {}
 
+'''
+*  Pistud Keywords
+'''
 def newkey(key, code):  # Define newkey
     custom_keys[key] = code 
 
 def py(execpython):  # Define executing python code
-    exec(execpython)  # Run python code
+    exec(execpython)
 
 def bash(executeos): # Define executing bash
     output = os.popen(executeos).read()
@@ -60,7 +66,7 @@ def let(var_name, value): # Define letting variable being created
         if var_name in variables:
             var_name = variables[var_name]
     if value.startswith("{") and value.endswith("}"):
-        value = value[1:-1]  # Remove {}
+        value = value[1:-1]
         if value in variables:
             value = variables[value]
 
@@ -68,7 +74,7 @@ def wo(url):  # Define web open
     webbrowser.open(url)
 
 def mb(type, title, message):  # Define message box
-    method_name = "show" + type  # Includes "show"
+    method_name = "show" + type
     method = getattr(messagebox, method_name, None)
     if method:
         method(title, message)
@@ -96,7 +102,7 @@ def if_stmt(var, value, code_if, code_else=None):  # Define if statement
         if variables[var] == value:
             try:
                 for line in code_if:
-                    if callable(line):  # Check if it's a callable
+                    if callable(line): 
                         line()
                     else:
                         exec(line.strip(), globals())
@@ -117,24 +123,22 @@ def if_stmt(var, value, code_if, code_else=None):  # Define if statement
 def cb(windowname, geo, size, name):  # Define create button
     if windowname in windows:
         window = windows[windowname]
-        x, y = map(int, geo.split(','))  # Extract x and y coordinates
-        width, height = map(int, size.split(','))  # Extract width and height
+        x, y = map(int, geo.split(','))
+        width, height = map(int, size.split(','))
         button = Button(window, text=name)
         button.place(x=x, y=y, width=width, height=height)
-        windows[f"{windowname}_{name}_button"] = button  # Store button for reference
+        windows[f"{windowname}_{name}_button"] = button
     else:
         print(f"Error: Window '{windowname}' not found.")
 
 def bc(name, code):  # Define button click
-    # Find the button in the stored windows
     for key, button in windows.items():
-        if key.endswith(f"_{name}_button"):  # Match button by name
-            # Bind the click event to execute the provided code
+        if key.endswith(f"_{name}_button"):
             def on_click():
                 for line in code:
                     line = line.strip()
-                    if line.startswith("fn("):  # Ensure only functions are executed
-                        func_name = line[3:-1]  # Extract function name
+                    if line.startswith("fn("):
+                        func_name = line[3:-1]
                         if func_name in functions:
                             for func_line in functions[func_name]:
                                 exec(func_line.strip(), globals())
@@ -142,18 +146,21 @@ def bc(name, code):  # Define button click
                             print(f"Error: Function '{func_name}' not found.")
                     else:
                         print(f"Error: Invalid code '{line}'.")
-            button.config(command=on_click)  # Bind the click handler to the button
+            button.config(command=on_click)
             print(f"Click event bound to button '{name}'.")
             return
     print(f"Error: Button '{name}' not found.")
 
-def define(name, param, param_type, code):  
+def define(name, param, param_type, code): # Define define (weird)
     def func(value):
-        variables[param] = value  # Store the value in variables
-        exec(code.replace(f"{{{param}}}", str(value)), globals())  # Execute code
+        variables[param] = value
+        exec(code.replace(f"{{{param}}}", str(value)), globals())
     
-    custom_keys[name] = func  # Store function in custom keys
+    custom_keys[name] = func 
 
+'''
+*  Read and interpret before running:
+'''
 def execute_main(code):  
     for line in code.splitlines():
         stripped_line = line.strip()
@@ -163,7 +170,7 @@ def execute_main(code):
             continue
         try:
             if stripped_line in custom_keys:  
-                custom_keys[stripped_line]()  # Execute function if defined
+                custom_keys[stripped_line]()
             else:
                 parts = stripped_line.split(" ", 1)
                 if parts[0] in custom_keys:
@@ -172,10 +179,13 @@ def execute_main(code):
                     else:
                         custom_keys[parts[0]]("")
                 else:
-                    exec(stripped_line, globals())  # Execute regular code
+                    exec(stripped_line, globals())
         except Exception as e:
             print(f"Error in mainspace: {e}")
 
+'''
+*  Other keywords:
+'''
 def fn(name=None, code=None):  # Define functions
     if name and code:
         lines = [line.strip() for line in code.strip().splitlines() if line.strip()]
@@ -192,18 +202,16 @@ def loop(code, n):  # Define loop
     if n == 0: # Loop
         while True:
             execute_main(code)
-    else: # Looping the amount added
+    else:
         for _ in range(n):
             execute_main(code)
 
 def math(expression):  # Define math
     try:
-        # Replace placeholders like {first}, {op}, {sec} with their values
         for var_name, var_value in variables.items():
             placeholder = "{" + var_name + "}"
             if placeholder in expression:
                 expression = expression.replace(placeholder, str(var_value))
-        # Evaluate the expression and return the result
         return eval(expression, {}, variables)
     except Exception as e:
         print(f"Error evaluating math expression: {e}")
@@ -219,7 +227,10 @@ def catch(code, error_handler): # Define catch
             exec(line, globals())
 
 newkey('epic', 'pln("...*nEPIC, thats how the Fries-Byte calls the language since its easy for everyone (f-b thinks.), and hed spend his free-time on building this source free program*nnFries-Byte or f-b knew that in the last few years, there are only around 30~ million programmer, no ones intrested or its to hard, so f-b build this to make it easier to program in!*n epic text too!*n...")') # Define funneh print
-            
+
+'''
+*  Require ps. before keyword:
+'''
 class PustInterpreter:
     let = staticmethod(let)
     wo = staticmethod(wo)
@@ -234,4 +245,7 @@ class PustInterpreter:
     math = staticmethod(math)
     catch = staticmethod(catch)
 
+'''
+*  ps
+'''
 ps = PustInterpreter()
