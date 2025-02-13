@@ -29,4 +29,4 @@ newkey("ptd::sys", 'load("https://raw.githubusercontent.com/Fries-byte/stud-list
 newkey("ptd::ui", 'load("https://raw.githubusercontent.com/Fries-byte/stud-list/refs/heads/main/ui/src.py")')
 newkey("ptd::utils", 'load("https://raw.githubusercontent.com/Fries-byte/stud-list/refs/heads/main/utils/src.py")')
 
-exec(urllib.request.urlopen("https://raw.githubusercontent.com/Fries-byte/stud-list/refs/heads/main/int/src.py"))
+exec(urllib.request.urlopen("https://raw.githubusercontent.com/Fries-byte/stud-list/refs/heads/main/int/src.py").read().decode())
