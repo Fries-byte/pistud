@@ -22,6 +22,9 @@ after you've downloaded Piargs use the command ```piargs install pistud``` and i
 and you will see the src tab where your main file will be, you can ignore the package.py which what makes you able to code with PiStud, <br>
 you can also create more files but make sure that you import the package.py, and to import files (like in python) use python's import system, ```import maintwo.py```. <br>
 
+# Interpret and compile
+To compile your pistud file, use Piargs and do ```ping install studc```, you can learn more at [Compile PiStud | studc](https://github.com/Fries-byte/cp-sc) <br>
+
 please read the License and Security if you want the source and all <br> 
 
 Thank you for using PiStud! <br>
