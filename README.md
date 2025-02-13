@@ -8,7 +8,7 @@ You also must know that the error log might be bad and so to fix errors are quit
 
 ## Getting started
 To get started to program PiStud, go in [PiStud's course](https://fries-byte.github.io/pistud/course.html) to learn it first <br>
-after you're done with learning it, download [Piargs](https://github.com/Fries-byte/pistud/raw/refs/heads/main/piargs/piargs.exe), a package manager for Pistud. <br>
+after you're done with learning it, download [Piargs](https://github.com/Fries-byte/pistud/raw/refs/heads/main/exe/piargs.exe), a package manager for Pistud. <br>
 Or if your in a chomebook or something, you can use the JavaScript version of PiStud,
 ```js
   await import("https://raw.githubusercontent.com/Fries-byte/pistud/refs/heads/main/extra/js/psjavascript.js")
