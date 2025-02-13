@@ -21,7 +21,32 @@ def load(packport):
         exec("\n".join(executable_code), globals())
     except Exception as e:
         print(f"Error loading package from {packport}: {e}")
-        
+
+def execute_main(code):  
+    line_num = 0
+    for line in code.splitlines():
+        line_num += 1
+        stripped_line = line.strip()
+        if "//" in stripped_line:
+            stripped_line = stripped_line.split("//", 1)[0].strip()
+        if stripped_line == "":
+            continue
+        try:
+            if stripped_line in custom_keys:  
+                custom_keys[stripped_line]()
+            else:
+                parts = stripped_line.split(" ", 1)
+                if parts[0] in custom_keys:
+                    if len(parts) > 1:
+                        custom_keys[parts[0]](parts[1])
+                    else:
+                        custom_keys[parts[0]]("")
+                else:
+                    exec(stripped_line, globals())
+        except Exception as e:
+            print(f"Error on line {line_num}: {e}")
+            return line_num
+    return None
         
 newkey("ptd::main", 'load("https://raw.githubusercontent.com/Fries-byte/stud-list/refs/heads/main/main/src.py")')
 newkey("ptd::math", 'load("https://raw.githubusercontent.com/Fries-byte/stud-list/refs/heads/main/math/src.py")')
