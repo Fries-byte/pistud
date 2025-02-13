@@ -9,14 +9,12 @@ You also must know that the error log might be bad and so to fix errors are quit
 ## Getting started
 To get started to program PiStud, go in [PiStud's course](https://fries-byte.github.io/pistud/course.html) to learn it first <br>
 after you're done with learning it, download [Piargs](https://github.com/Fries-byte/pistud/raw/refs/heads/main/exe/piargs.exe), a package manager for Pistud. <br>
-Or if your in a chomebook or something, you can use the JavaScript version of PiStud,
+Or if your in a chomebook or something, download the <a href="https://raw.githubusercontent.com/Fries-byte/pistud/main/extra/js/psjavascript.js" download="psjavascript.js">javascript version of Pistud</a> and run this on your browser by ctrl+shift+i,
 ```js
-  await import("https://raw.githubusercontent.com/Fries-byte/pistud/refs/heads/main/extra/js/psjavascript.js")
-    .then(async (piload) => {
-        await piargs.loadPiPackage([]);
-        window.piargs = piargs; 
-        console.log("Piargs manager loaded!");
-    });
+import("./extra/js/psjavascript.js").then((module) => {
+    window.piargs = module.piargs;
+    console.log("Piargs manager loaded!");
+});
 ```
 after you've downloaded Piargs use the command ```piargs install pistud``` and it should create a folder with the ide in it. <br>
 and you will see the src tab where your main file will be, you can ignore the package.py which what makes you able to code with PiStud, <br>
