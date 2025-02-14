@@ -5,6 +5,27 @@
 
 import urllib.request
 custom_keys = {}
+functions = {}
+def fn(name=None, variable=None, code=None):
+    if name and code:
+        lines = [line.strip() for line in code.strip().splitlines() if line.strip()]
+        functions[name] = {"code": lines, "variable": variable}
+        if name == "main":
+            for line in lines:
+                if line.startswith("define("):
+                    exec(line, globals())
+                else:
+                    slice(line)
+    elif name in functions:
+        func = functions[name]
+        if func["variable"] is not None:
+            for line in func["code"]:
+                updated_line = line.replace(f"{{{func['variable']}}}", str(variable))
+                slice(updated_line)
+        else:
+            for line in func["code"]:
+                slice(line)
+                
 def newkey(key, code):
     custom_keys[key] = code
 
