@@ -104,19 +104,19 @@
                 case 'Mainspace':
                     content.innerHTML = `
                         <h2>Mainspace</h2>
-                        <p>Mainspace is where you can write your code without the need for the <code>ps</code> prefix. For example: <code>ps.fn("main", """pln("my coding space")"""</code>. Functions cannot be created here, but they can be called.</p>
+                        <p>Mainspace is where you can write your code without the need for the <code>ps</code> prefix. For example: <code>ps.fn("main", None, """pln("my coding space")"""</code>. Functions cannot be created here, but they can be called.</p>
                     `;
                     break;
                 case 'Print':
                     content.innerHTML = `
                         <h2>Print</h2>
-                        <p>To print output, use <code>pln("message")</code>. If you are not in the mainspace, use <code>ps.pln("message")</code>, like the ps. every line.</p>
+                        <p>To print output, use <code>pln("message")</code>. If you are not in the mainspace, use <code>ps.pln("message")</code>, like the ps. every line. (you can print variables like this: pln("hello {name}, you are {age} years old")</p>
                     `;
                     break;
                 case 'Input':
                     content.innerHTML = `
                         <h2>Input</h2>
-                        <p>To get user input, use <code>iln("prompt")</code> or <code>ps.iln("prompt")</code> if you're not in the mainspace. To store input in a variable, use: <code>cv("variable", iln("Your input: "))</code>.</p>
+                        <p>To get user input, use <code>iln("prompt")</code> or <code>ps.iln("prompt")</code> if you're not in the mainspace. To store input in a variable, use: <code>let("variable", iln("Your input: "))</code>.</p>
                     `;
                     break;
                 case 'If Statement':
@@ -140,7 +140,7 @@
                 case 'Functions':
                     content.innerHTML = `
                         <h2>Functions</h2>
-                        <p>Functions in Pust can sometimes face limitations in Mainspace. In such cases, use <code>ps.fn("FunctionName", """code with as many lines as you want""")</code> to define the function outside of Mainspace.</p>
+                        <p>Functions in Pust can sometimes face limitations in Mainspace. In such cases, use <code>ps.fn("FunctionName", None """code with as many lines as you want""")</code>, and to run it use fn("FunctionName"), and if you want to save a variable on a function, you can do <code>fn("print", "a", "pln('say this: {a}')    fn("print", "im epic")</code></p>
                     `;
                     break;
                 case 'Py':
@@ -188,7 +188,7 @@
                 case 'Window':
                     content.innerHTML = `
                         <h2>Window</h2>
-                        <p>To create a window, use <code>cv("windowName", cw("WindowTitle", "400x300"))</code> and show it with <code>wl("windowName")</code>.</p>
+                        <p>To create a window, use <code>let("windowName", cw("WindowTitle", "400x300"))</code> and show it with <code>wl("windowName")</code>.</p>
                     `;
                     break;
                 case 'Math':
@@ -197,9 +197,18 @@
                         <p>Math, as it says "math" is where you can do math, like 9 + 10, to use Math do <code>math("1 + 1")</code> and to print it, do <code>let("result", math("1+1")) (new line) pln("{result}")</code> it also works with inputs too! Just save the input with let() and then use {var}!.</p>
                     `;
                     break;
-            }
-        }
-    </script>
+                case 'catch':
+                    content.innerHTML = `
+                        <h2>catch</h2>
+                        <p>to get an error with a reason, you can do <code>catch("{!error!}", "here: {!reason!}").</p>
+                    `;
+                    break;
+                case '.ptd':
+                    content.innerHTML = `
+                        <h2>How to make a .ptd file</h2>
+                        <p>If you want to make a .ptd for programming in pistud, make a file with the .ptd at the end, and to run them, use <code>python src.py src/main.ptd</code></p>
+                    `;
+                    break;
 </head>
 <body>
     <div class="container">
@@ -226,6 +235,8 @@
             <button onclick="showSection('Window')">Window</button>
             <button onclick="showSection('NewKey')">NewKey</button>
             <button onclick="showSection('Math')">Math</button>
+            <button onclick="showSection('catch')">catch</button>
+            <button onclick="showSection('.ptd')">.ptd</button>
         </div>
 
         <div class="sections" id="content">
