@@ -12,40 +12,37 @@ from tkinter import messagebox  # Importing messagebox to give info, warning, er
 from tkinter import *  # Importing tkinter for software builder
 import urllib.request  # Importing urllib to import packages
 import os # Importing os for bash
+import sys # Importing sys to support .ptd files
 
-'''
-*  Storage:
-'''
+# Storage
 variables = {}
 functions = {}
 windows = {}
 buttons = {}
 custom_keys = {}
 
-'''
-*  Pistud Keywords
-'''
-def newkey(key, code):  # Define newkey
-    custom_keys[key] = code 
+# Pistud Keywords
+def newkey(key, code):
+    custom_keys[key] = code
 
-def py(execpython):  # Define executing python code
+def py(execpython):
     exec(execpython)
 
-def bash(executeos): # Define executing bash
+def bash(executeos):
     output = os.popen(executeos).read()
     print(output)
-    
-def load(packport):  # Define package loader
-    exec(urllib.request.urlopen(packport).read().decode())  # Gets and decodes the package
-    
-def cw(wtitle, geo):  # Define create window
+
+def load(packport):
+    exec(urllib.request.urlopen(packport).read().decode())
+
+def cw(wtitle, geo):
     window = Tk()
     window.title(wtitle)
     window.geometry(geo)
     windows[wtitle] = window
     return window
 
-def ct(windowname, geo, text):  # Define create text
+def ct(windowname, geo, text):
     if windowname in windows:
         window = windows[windowname]
         x, y = map(int, geo.split('x'))
@@ -54,13 +51,13 @@ def ct(windowname, geo, text):  # Define create text
     else:
         print(f"Error: Window '{windowname}' not found.")
 
-def wl(wname):  # Define window loop
+def wl(wname):
     if wname in windows:
         windows[wname].mainloop()
     else:
         print(f"Error: Window '{wname}' not found.")
 
-def let(var_name, value): # Define letting variable being created
+def let(var_name, value):
     if var_name.startswith("{") and var_name.endswith("}"):
         var_name = var_name[1:-1]
         if var_name in variables:
@@ -70,10 +67,10 @@ def let(var_name, value): # Define letting variable being created
         if value in variables:
             value = variables[value]
 
-def wo(url):  # Define web open
+def wo(url):
     webbrowser.open(url)
 
-def mb(type, title, message):  # Define message box
+def mb(type, title, message):
     method_name = "show" + type
     method = getattr(messagebox, method_name, None)
     if method:
@@ -81,7 +78,7 @@ def mb(type, title, message):  # Define message box
     else:
         print(f"Error: '{method_name}' is not a valid messagebox type.")
 
-def pln(text, *args):  # Define print
+def pln(text, *args):
     text = text.replace("*n", "\n")
     text = text.replace("*t", "\t")
     for var_name in variables:
@@ -94,15 +91,15 @@ def pln(text, *args):  # Define print
             text = text.replace(placeholder, str(arg))
     print(text)
 
-def iln(prompt):  # Define input line
+def iln(prompt):
     return input(prompt)
 
-def if_stmt(var, value, code_if, code_else=None):  # Define if statement
+def if_stmt(var, value, code_if, code_else=None):
     if var in variables:
         if variables[var] == value:
             try:
                 for line in code_if:
-                    if callable(line): 
+                    if callable(line):
                         line()
                     else:
                         exec(line.strip(), globals())
@@ -120,7 +117,7 @@ def if_stmt(var, value, code_if, code_else=None):  # Define if statement
     else:
         print(f"Error: Variable '{var}' not found.")
 
-def cb(windowname, geo, size, name):  # Define create button
+def cb(windowname, geo, size, name):
     if windowname in windows:
         window = windows[windowname]
         x, y = map(int, geo.split(','))
@@ -131,7 +128,7 @@ def cb(windowname, geo, size, name):  # Define create button
     else:
         print(f"Error: Window '{windowname}' not found.")
 
-def bc(name, code):  # Define button click
+def bc(name, code):
     for key, button in windows.items():
         if key.endswith(f"_{name}_button"):
             def on_click():
@@ -151,25 +148,21 @@ def bc(name, code):  # Define button click
             return
     print(f"Error: Button '{name}' not found.")
 
-def define(name, param, param_type, code): # Define define (weird)
+def define(name, param, param_type, code):
     def func(value):
         variables[param] = value
         exec(code.replace(f"{{{param}}}", str(value)), globals())
-    
-    custom_keys[name] = func 
+    custom_keys[name] = func
 
-'''
-*  Other keywords:
-'''
-def fn(name=None, variable=None, code=None):  # Define functions
+# Other keywords
+def fn(name=None, variable=None, code=None):
     if name and code:
         lines = [line.strip() for line in code.strip().splitlines() if line.strip()]
         functions[name] = {"code": lines, "variable": variable}
         if name == "main":
             if variable is not None:
                 variables[variable] = None
-            for line in lines:
-                exec(line, globals())
+            execute_main(code)
     elif name in functions:
         func = functions[name]
         if func["variable"] is not None:
@@ -182,18 +175,18 @@ def fn(name=None, variable=None, code=None):  # Define functions
     else:
         print(f"Function '{name}' not found.")
 
-def slice(code):  # Define slice keyword
+def slice(code):
     execute_main(code)
 
-def loop(code, n):  # Define loop
-    if n == 0: # Loop
+def loop(code, n):
+    if n == 0:
         while True:
             execute_main(code)
     else:
         for _ in range(n):
             execute_main(code)
 
-def math(expression):  # Define math
+def math(expression):
     try:
         for var_name, var_value in variables.items():
             placeholder = "{" + var_name + "}"
@@ -204,7 +197,7 @@ def math(expression):  # Define math
         print(f"Error evaluating math expression: {e}")
         return None
 
-def catch(code, error_handler): # Define catch
+def catch(code, error_handler):
     try:
         exec(code, globals())
     except Exception as e:
@@ -213,39 +206,58 @@ def catch(code, error_handler): # Define catch
             line = line.replace("{!error!}", "Error Found").replace("{!reason!}", error_message)
             exec(line, globals())
 
-# Register 'slice' as a custom keyword
-newkey('slice', 'slice')
+newkey('epic', 'pln("...*nEPIC, thats how the Fries-Byte calls the language since its easy for everyone (f-b thinks.), and hed spend his free-time on building this source free program*nnFries-Byte or f-b knew that in the last few years, there are only around 30~ million programmer, no ones intrested or its to hard, so f-b build this to make it easier to program in!*n epic text too!*n...")')
 
-newkey('epic', 'pln("...*nEPIC, thats how the Fries-Byte calls the language since its easy for everyone (f-b thinks.), and hed spend his free-time on building this source free program*nnFries-Byte or f-b knew that in the last few years, there are only around 30~ million programmer, no ones intrested or its to hard, so f-b build this to make it easier to program in!*n epic text too!*n...")') # Define funneh print
+def read_ptd_file(file_path):
+    try:
+        with open(file_path, 'r') as file:
+            return file.read()
+    except Exception as e:
+        print(f"Error reading file '{file_path}': {e}")
+        return None
 
-'''
-*  Read and interpret before running:
-'''
-def execute_main(code):  
+def execute_ptd_file(file_path):
+    code = read_ptd_file(file_path)
+    if code:
+        execute_main(code)
+
+if __name__ == "__main__":
+    if len(sys.argv) > 1:
+        file_path = sys.argv[1]
+        if file_path.endswith('.ptd'):
+            execute_ptd_file(file_path)
+        else:
+            print("Error: The file must have a .ptd extension.")
+    else:
+        print("Usage: python interpreter.py <file.ptd>")
+
+def execute_main(code):
+    in_comment_block = False
+    cleaned_code = []
     for line in code.splitlines():
         stripped_line = line.strip()
+        if "/*" in stripped_line:
+            if "*/" in stripped_line:
+                stripped_line = stripped_line.split("/*", 1)[0].strip() + stripped_line.split("*/", 1)[1].strip()
+            else:
+                in_comment_block = True
+                stripped_line = stripped_line.split("/*", 1)[0].strip()
+        elif "*/" in stripped_line:
+            in_comment_block = False
+            stripped_line = stripped_line.split("*/", 1)[1].strip()
+        elif in_comment_block:
+            continue
         if "//" in stripped_line:
             stripped_line = stripped_line.split("//", 1)[0].strip()
-        if stripped_line == "":
-            continue
-        try:
-            if stripped_line in custom_keys:  
-                custom_keys[stripped_line]()
-            else:
-                parts = stripped_line.split(" ", 1)
-                if parts[0] in custom_keys:
-                    if len(parts) > 1:
-                        custom_keys[parts[0]](parts[1])
-                    else:
-                        custom_keys[parts[0]]("")
-                else:
-                    exec(stripped_line, globals())
-        except Exception as e:
-            print(f"Error in mainspace: {e}")
+        if stripped_line:
+            cleaned_code.append(stripped_line)
+    cleaned_code = "\n".join(cleaned_code)
+    try:
+        exec(cleaned_code, globals())
+    except Exception as e:
+        print(f"Error in mainspace: {e}")
 
-'''
-*  Require ps. before keyword:
-'''
+# Require ps. before keyword
 class PustInterpreter:
     let = staticmethod(let)
     wo = staticmethod(wo)
@@ -261,7 +273,5 @@ class PustInterpreter:
     catch = staticmethod(catch)
     slice = staticmethod(slice)
 
-'''
-*  ps
-'''
+# ps
 ps = PustInterpreter()
