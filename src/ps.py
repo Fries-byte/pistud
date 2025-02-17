@@ -208,29 +208,6 @@ def catch(code, error_handler):
 
 newkey('epic', 'pln("...*nEPIC, thats how the Fries-Byte calls the language since its easy for everyone (f-b thinks.), and hed spend his free-time on building this source free program*nnFries-Byte or f-b knew that in the last few years, there are only around 30~ million programmer, no ones intrested or its to hard, so f-b build this to make it easier to program in!*n epic text too!*n...")')
 
-def read_ptd_file(file_path):
-    try:
-        with open(file_path, 'r') as file:
-            return file.read()
-    except Exception as e:
-        print(f"Error reading file '{file_path}': {e}")
-        return None
-
-def execute_ptd_file(file_path):
-    code = read_ptd_file(file_path)
-    if code:
-        execute_main(code)
-
-if __name__ == "__main__":
-    if len(sys.argv) > 1:
-        file_path = sys.argv[1]
-        if file_path.endswith('.ptd'):
-            execute_ptd_file(file_path)
-        else:
-            print("Error: The file must have a .ptd extension.")
-    else:
-        print("Usage: python interpreter.py <file.ptd>")
-
 def execute_main(code):
     in_comment_block = False
     cleaned_code = []
@@ -256,6 +233,29 @@ def execute_main(code):
         exec(cleaned_code, globals())
     except Exception as e:
         print(f"Error in mainspace: {e}")
+
+def read_ptd_file(file_path):
+    try:
+        with open(file_path, 'r') as file:
+            return file.read()
+    except Exception as e:
+        print(f"Error reading file '{file_path}': {e}")
+        return None
+
+def execute_ptd_file(file_path):
+    code = read_ptd_file(file_path)
+    if code:
+        execute_main(code)
+
+if __name__ == "__main__":
+    if len(sys.argv) > 1:
+        file_path = sys.argv[1]
+        if file_path.endswith('.ptd'):
+            execute_ptd_file(file_path)
+        else:
+            print("Error: The file must have a .ptd extension.")
+    else:
+        print("Usage: python interpreter.py <file.ptd>")
 
 # Require ps. before keyword
 class PustInterpreter:
