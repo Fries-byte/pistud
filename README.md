@@ -19,7 +19,7 @@ import("./Downloads/psjavascript.js").then((module) => {
 after you've downloaded Piargs use the command ```piargs install pistud``` and it should create a folder with the ide in it. <br>
 and you will see the src tab where your main file will be, you can ignore the package.py which what makes you able to code with PiStud, <br>
 you can also create more files but make sure that you import the package.py, and to import functions variables and more, use python's import system, ```import maintwo.py```. <br>
-there is also .ptd files, you can run .ptd files with ```python package.py src/main.py``` depending where the files are (also the file name)
+there is also .ptd files, you can run .ptd files with ```python package.py src/main.ptd``` depending where the files are (also the file name)
 
 # Interpret and compile
 To compile your pistud file, use Piargs and do ```ping install studc```, you can learn more at [Compile PiStud | studc](https://github.com/Fries-byte/cp-sc) <br>
