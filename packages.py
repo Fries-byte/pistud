@@ -1,7 +1,9 @@
 import urllib.request
 if name == "versions":
-  if version == 10:
+  if version == 11:
     exec(urllib.request.urlopen("https://raw.githubusercontent.com/Fries-byte/PiStud/refs/heads/main/src/ps.py").read().decode())
+  elif version == 10:
+    exec(urllib.request.urlopen("https://raw.githubusercontent.com/Fries-byte/PiStud/refs/heads/main/src/ps_ver10.py").read().decode())
   elif version == 9:
     exec(urllib.request.urlopen("https://raw.githubusercontent.com/Fries-byte/PiStud/refs/heads/main/src/ps_ver9.py").read().decode())
   elif version == 8.5:
