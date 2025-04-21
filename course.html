@@ -209,11 +209,17 @@
                         <p>If you want to make a .ptd for programming in pistud, make a file with the .ptd at the end, and to run them, use <code>python src.py src/main.ptd</code></p>
                     `;
                     break;
+                case 'press':
+                    content.innerHTML = `
+                        <h2>press</h2>
+                        <p>Press will simulate a key input (from a keyboard) by using ascii. So no library needed to download! (Needed AI to learn this XD). use <code>press("content", "Operating system. (Linux, macos, windows)", "delay")</code> to simulate a press, as you can see that it requires an operating system to be set because windows, macos and linux is not the same! (worst advice)</p>
+                    `;
+                    break;
 </head>
 <body>
     <div class="container">
         <div class="logo">
-            <img src="l.png" alt="Year Logo">
+            <img src="l.png" alt="Logo">
         </div>
         <h1>Welcome to PiStud</h1>
         <p>A Rust-Inspired Programming Language</p>
@@ -237,6 +243,7 @@
             <button onclick="showSection('Math')">Math</button>
             <button onclick="showSection('catch')">catch</button>
             <button onclick="showSection('.ptd')">.ptd</button>
+            <button onclick="showSection('press')">press</button>
         </div>
 
         <div class="sections" id="content">
