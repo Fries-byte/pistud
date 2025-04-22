@@ -13,6 +13,17 @@
                 newkey(key, code) {
                     this.customKeys[key] = code;
                 }
+
+                async press(c, t, e, d) {
+                    t = t.toLowerCase();
+                    if (t=="class"){
+                        document.querySelector(`.${e}`).value = c;
+                    } else if (t=="id"){
+                        document.querySelector(`#${e}`).value = c;
+                    } else {
+                        return "the 'press' keyword is not proporly used\ntry press('content', '.class-name or #id-name/number', 'element name')";
+                    }
+                }
         
                 py(execJS) {
                     eval(execJS);
