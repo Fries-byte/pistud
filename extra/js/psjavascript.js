@@ -16,15 +16,22 @@
 
                 async press(c, t, e, d) {
                     t = t.toLowerCase();
-                    if (t=="class"){
-                        document.querySelector(`.${e}`).value = c;
-                    } else if (t=="id"){
-                        document.querySelector(`#${e}`).value = c;
+                    const element = document.querySelector(`${t === 'class' ? '.' : '#'}${e}`); 
+                    if (!element) {
+                        return `Element not found: ${e}`;
+                    }
+                    if (t === 'class' || t === 'id') {
+                        if (element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement) {
+                            element.value = c;
+                            element.dispatchEvent(new Event('input', { bubbles: true }));
+                        } else if (element instanceof HTMLElement) {
+                            element.innerHTML = c;
+                        }
                     } else {
-                        return "the 'press' keyword is not proporly used\ntry press('content', '.class-name or #id-name/number', 'element name')";
+                        return "The 'press' keyword is not properly used.\nTry press('content', '.class-name or #id-name', 'class or id')";
                     }
                 }
-        
+
                 py(execJS) {
                     eval(execJS);
                 }
