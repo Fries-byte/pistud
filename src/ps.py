@@ -50,11 +50,11 @@ def press(key, Os, delay):
 
     elif Os == "windows":
         if key == "\n":
-            vk = 0x0D  # Enter
+            vk = 0x0D
         elif key == "\t":
-            vk = 0x09  # Tab
+            vk = 0x09
         elif key == " ":
-            vk = 0x20  # Space
+            vk = 0x20
         elif key.lower() == "backspace":
             vk = 0x08
         else:
